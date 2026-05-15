@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MrTiger X AI - Générateur de Templates</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="nature-bg">
+    <span class="leaf leaf-1">🍃</span>
+    <span class="leaf leaf-2">🌿</span>
+    <span class="leaf leaf-3">🍂</span>
+    <span class="leaf leaf-4">🌱</span>
+  </div>
+
+  <header class="navbar">
+    <div class="brand">
+      <div class="logo">🐯</div>
+      <div>
+        <h1>MrTiger X AI</h1>
+        <p>Créer des templates web avec l’IA</p>
+      </div>
+    </div>
+
+    <nav>
+      <a href="#generator">Créer</a>
+      <a href="#history">Historique</a>
+      <a href="#plans">Offres</a>
+    </nav>
+
+    <div class="account-area">
+      <button class="small-btn ghost" id="loginOpenBtn">Connexion</button>
+      <button class="small-btn pro-btn" id="upgradeBtn">Passer Pro</button>
+      <button class="small-btn ghost hidden" id="logoutBtn">Déconnexion</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <span class="badge">🌿 Version complète • Connexion • Historique • Gratuit/Pro</span>
+        <h2>
+          Décris ton idée.
+          <span>MrTiger X prépare ton template.</span>
+        </h2>
+        <p class="hero-description">
+          Une interface professionnelle pour générer, sauvegarder et gérer des prompts de templates.
+          La vraie IA pourra être branchée ensuite avec une API.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn primary" href="#generator">🌱 Créer un template</a>
+          <button class="btn secondary" id="demoLoginBtn">Connexion rapide</button>
+        </div>
+
+        <div class="stats">
+          <div>
+            <strong id="dailyCount">0/3</strong>
+            <span>Générations gratuites</span>
+          </div>
+          <div>
+            <strong id="accountStatus">Invité</strong>
+            <span>Compte actuel</span>
+          </div>
+          <div>
+            <strong id="planStatus">Free</strong>
+            <span>Plan actif</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="plant-card main-card">
+          <div class="card-top">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+
+          <div class="template-preview">
+            <div class="preview-header">
+              <span>AI Template</span>
+            </div>
+            <div class="preview-title"></div>
+            <div class="preview-line short"></div>
+            <div class="preview-line"></div>
+            <div class="preview-grid">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="floating-card card-one">
+          <span>🍃</span>
+          <p>Nature Pro</p>
+        </div>
+
+        <div class="floating-card card-two">
+          <span>💾</span>
+          <p>Sauvegarde</p>
+        </div>
+
+        <div class="circle-decoration"></div>
+      </div>
+    </section>
+
+    <section class="notice" id="userNotice">
+      <strong>Mode actuel :</strong>
+      <span>Tu utilises la version gratuite locale. Les données sont sauvegardées dans ton navigateur.</span>
+    </section>
+
+    <section class="section-title" id="generator">
+      <span>Générateur</span>
+      <h2>Crée ton prompt ultra détaillé</h2>
+      <p>Cette version prépare le prompt. Ensuite on branchera une vraie IA pour générer le code.</p>
+    </section>
+
+    <section class="generator-layout">
+      <form class="generator-form" id="templateForm">
+        <div class="grid-2">
+          <div class="form-group">
+            <label for="projectName">Nom du projet</label>
+            <input id="projectName" type="text" placeholder="Ex : GreenShop AI" />
+          </div>
+
+          <div class="form-group">
+            <label for="siteType">Type de site</label>
+            <select id="siteType">
+              <option>Portfolio</option>
+              <option>Landing page</option>
+              <option>Boutique</option>
+              <option>Blog</option>
+              <option>Dashboard</option>
+              <option>Site IA</option>
+              <option>Formation / Tutos</option>
+              <option>Restaurant</option>
+              <option>Agence</option>
+              <option>Autre</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="form-group">
+            <label for="style">Style visuel</label>
+            <select id="style">
+              <option>Naturel premium</option>
+              <option>Minimaliste vert</option>
+              <option>Éco moderne</option>
+              <option>Luxe doux</option>
+              <option>Professionnel clair</option>
+              <option>Créatif végétal</option>
+              <option>Clean startup</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="target">Public visé</label>
+            <input id="target" type="text" placeholder="Ex : entrepreneurs, créateurs, clients premium..." />
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="form-group">
+            <label for="mainColor">Couleur principale</label>
+            <input id="mainColor" type="text" placeholder="Ex : vert forêt" />
+          </div>
+
+          <div class="form-group">
+            <label for="secondaryColor">Couleur secondaire</label>
+            <input id="secondaryColor" type="text" placeholder="Ex : beige naturel" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Pages souhaitées</label>
+          <div class="chips">
+            <label><input type="checkbox" value="Accueil" checked /> Accueil</label>
+            <label><input type="checkbox" value="À propos" /> À propos</label>
+            <label><input type="checkbox" value="Services" /> Services</label>
+            <label><input type="checkbox" value="Boutique" /> Boutique</label>
+            <label><input type="checkbox" value="Blog" /> Blog</label>
+            <label><input type="checkbox" value="FAQ" /> FAQ</label>
+            <label><input type="checkbox" value="Contact" checked /> Contact</label>
+            <label><input type="checkbox" value="Dashboard" /> Dashboard</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Fonctionnalités</label>
+          <div class="chips">
+            <label><input type="checkbox" value="Connexion" /> Connexion</label>
+            <label><input type="checkbox" value="Paiement" /> Paiement</label>
+            <label><input type="checkbox" value="Abonnement" /> Abonnement</label>
+            <label><input type="checkbox" value="Formulaire" checked /> Formulaire</label>
+            <label><input type="checkbox" value="Téléchargement ZIP" /> Téléchargement ZIP</label>
+            <label><input type="checkbox" value="Espace utilisateur" /> Espace utilisateur</label>
+            <label><input type="checkbox" value="Animations" /> Animations</label>
+            <label><input type="checkbox" value="Mode sombre" /> Mode sombre</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="detailLevel">Niveau de détail</label>
+          <input id="detailLevel" type="range" min="1" max="10" value="7" />
+          <div class="range-labels">
+            <span>Simple</span>
+            <span>Ultra précis</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="description">Description complète</label>
+          <textarea id="description" rows="7" placeholder="Décris exactement le site : ambiance, sections, textes, boutons, objectif, style, fonctionnalités..."></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn primary full" type="submit">🌿 Générer</button>
+          <button class="btn secondary full" type="button" id="resetBtn">Réinitialiser</button>
+        </div>
+      </form>
+
+      <aside class="result-panel">
+        <div class="result-header">
+          <span>Résultat</span>
+          <div>
+            <button id="copyBtn">Copier</button>
+            <button id="downloadBtn">Télécharger</button>
+          </div>
+        </div>
+
+        <div class="result-tabs">
+          <button class="tab active" data-tab="prompt">Prompt</button>
+          <button class="tab" data-tab="fakecode">Aperçu code</button>
+        </div>
+
+        <pre id="resultText">Remplis le formulaire puis clique sur générer.</pre>
+      </aside>
+    </section>
+
+    <section class="section-title" id="history">
+      <span>Sauvegarde</span>
+      <h2>Historique des créations</h2>
+      <p>Chaque génération est sauvegardée automatiquement dans ton navigateur.</p>
+    </section>
+
+    <section class="history-panel">
+      <div class="history-top">
+        <h3>Mes templates sauvegardés</h3>
+        <button class="small-btn danger" id="clearHistoryBtn">Vider l’historique</button>
+      </div>
+      <div class="history-list" id="historyList"></div>
+    </section>
+
+    <section class="section-title" id="plans">
+      <span>Offres</span>
+      <h2>Gratuit pour tester, Pro pour créer plus</h2>
+    </section>
+
+    <section class="plans">
+      <div class="plan free">
+        <h3>Gratuit</h3>
+        <p class="price">0€</p>
+        <ul>
+          <li>3 générations par jour</li>
+          <li>Templates simples</li>
+          <li>Prompts détaillés</li>
+          <li>Sauvegarde locale</li>
+        </ul>
+        <button class="btn secondary full" id="freeBtn">Utiliser gratuit</button>
+      </div>
+
+      <div class="plan pro">
+        <span class="popular">Recommandé</span>
+        <h3>Pro</h3>
+        <p class="price">5€/mois</p>
+        <ul>
+          <li>Générations illimitées</li>
+          <li>Descriptions ultra détaillées</li>
+          <li>Historique complet</li>
+          <li>Export texte</li>
+          <li>Prêt pour future API IA</li>
+        </ul>
+        <button class="btn primary full" id="proBtn">Activer Pro démo</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Built by <strong>MrTiger X</strong> — créer dans l’ombre, vendre avec style.</p>
+  </footer>
+
+  <div class="modal hidden" id="loginModal">
+    <div class="modal-card">
+      <button class="close-btn" id="closeLoginBtn">×</button>
+      <h2>Connexion</h2>
+      <p>Version locale : entre un pseudo pour créer un faux compte de test.</p>
+
+      <label for="usernameInput">Pseudo</label>
+      <input id="usernameInput" type="text" placeholder="Ex : MrTiger X" />
+
+      <button class="btn primary full" id="loginBtn">Se connecter</button>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
