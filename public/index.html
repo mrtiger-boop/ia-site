@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Siteo - Générateur de Templates</title>
+  <title>Siteo - Générateur de Sites IA</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -16,10 +16,10 @@
 
   <header class="navbar">
     <div class="brand">
-      <div class="logo">🐯</div>
+      <div class="logo">S</div>
       <div>
-        <h1>MrTiger X AI</h1>
-        <p>Créer des templates web avec l’IA</p>
+        <h1>Siteo</h1>
+        <p>Créer des sites avec l’IA</p>
       </div>
     </div>
 
@@ -27,6 +27,7 @@
       <a href="#generator">Créer</a>
       <a href="#history">Historique</a>
       <a href="#plans">Offres</a>
+      <button class="nav-button" data-open-modal="privacyModal">Confidentialité</button>
     </nav>
 
     <div class="account-area">
@@ -39,25 +40,26 @@
   <main>
     <section class="hero">
       <div class="hero-content">
-        <span class="badge">🌿 Version complète • Connexion • Historique • Gratuit/Pro</span>
+        <span class="badge">🌿 Générateur IA • Crédits • ZIP automatique • Gratuit/Pro</span>
         <h2>
           Décris ton idée.
-          <span>MrTiger X prépare ton template.</span>
+          <span>Siteo construit ton site.</span>
         </h2>
         <p class="hero-description">
-          Une interface professionnelle pour générer, sauvegarder et gérer des prompts de templates.
-          La vraie IA pourra être branchée ensuite avec une API.
+          Inscris-toi gratuitement, décris le site que tu veux, puis télécharge automatiquement un ZIP avec
+          <strong>index.html</strong>, <strong>style.css</strong> et <strong>script.js</strong>.
         </p>
 
         <div class="hero-actions">
-          <a class="btn primary" href="#generator">🌱 Créer un template</a>
-          <button class="btn secondary" id="demoLoginBtn">Connexion rapide</button>
+          <a class="btn primary" href="#generator">🌱 Créer un site</a>
+          <button class="btn secondary" id="demoLoginBtn">Créer un compte</button>
+          <button class="btn secondary" data-open-modal="promptHelpModal">Comment écrire le prompt ?</button>
         </div>
 
         <div class="stats">
           <div>
-            <strong id="dailyCount">0/3</strong>
-            <span>Générations gratuites</span>
+            <strong id="dailyCount">100 crédits</strong>
+            <span>Crédits disponibles</span>
           </div>
           <div>
             <strong id="accountStatus">Invité</strong>
@@ -80,7 +82,7 @@
 
           <div class="template-preview">
             <div class="preview-header">
-              <span>AI Template</span>
+              <span>Siteo Template</span>
             </div>
             <div class="preview-title"></div>
             <div class="preview-line short"></div>
@@ -94,13 +96,13 @@
         </div>
 
         <div class="floating-card card-one">
-          <span>🍃</span>
-          <p>Nature Pro</p>
+          <span>🔐</span>
+          <p>Compte requis</p>
         </div>
 
         <div class="floating-card card-two">
-          <span>💾</span>
-          <p>Sauvegarde</p>
+          <span>📦</span>
+          <p>ZIP prêt</p>
         </div>
 
         <div class="circle-decoration"></div>
@@ -109,17 +111,42 @@
 
     <section class="notice" id="userNotice">
       <strong>Mode actuel :</strong>
-      <span>Tu utilises la version gratuite locale. Les données sont sauvegardées dans ton navigateur.</span>
+      <span>Version gratuite : 100 crédits offerts. Chaque génération coûte 10 crédits.</span>
+    </section>
+
+    <section class="quick-help">
+      <button class="help-card" data-open-modal="promptHelpModal">
+        <strong>💡 Exemple de prompt</strong>
+        <span>Voir quoi écrire pour obtenir un bon site.</span>
+      </button>
+      <button class="help-card" data-open-modal="extractHelpModal">
+        <strong>📦 Comment utiliser le ZIP ?</strong>
+        <span>Extraire les fichiers et les garder reliés.</span>
+      </button>
+      <button class="help-card" data-open-modal="deployHelpModal">
+        <strong>🚀 Mettre le site en ligne</strong>
+        <span>Render, GitHub ou hébergement classique.</span>
+      </button>
+      <button class="help-card" data-open-modal="privacyModal">
+        <strong>🔒 Confidentialité</strong>
+        <span>Voir comment les données sont utilisées.</span>
+      </button>
     </section>
 
     <section class="section-title" id="generator">
       <span>Générateur</span>
-      <h2>Crée ton prompt ultra détaillé</h2>
-      <p>Cette version prépare le prompt. Ensuite on branchera une vraie IA pour générer le code.</p>
+      <h2>Crée ton site avec une description détaillée</h2>
+      <p>Connecte-toi, remplis le formulaire, génère ton site puis télécharge ton ZIP.</p>
     </section>
 
     <section class="generator-layout">
       <form class="generator-form" id="templateForm">
+        <div class="locked-panel" id="lockedPanel">
+          <strong>🔐 Connexion obligatoire</strong>
+          <p>Crée un compte ou connecte-toi pour tester Siteo gratuitement avec 100 crédits.</p>
+          <button class="btn primary" type="button" id="lockedLoginBtn">Créer un compte / Connexion</button>
+        </div>
+
         <div class="grid-2">
           <div class="form-group">
             <label for="projectName">Nom du projet</label>
@@ -154,6 +181,9 @@
               <option>Professionnel clair</option>
               <option>Créatif végétal</option>
               <option>Clean startup</option>
+              <option>Gaming Roblox</option>
+              <option>Médiéval fantasy</option>
+              <option>Pâtisserie premium</option>
             </select>
           </div>
 
@@ -196,7 +226,7 @@
             <label><input type="checkbox" value="Paiement" /> Paiement</label>
             <label><input type="checkbox" value="Abonnement" /> Abonnement</label>
             <label><input type="checkbox" value="Formulaire" checked /> Formulaire</label>
-            <label><input type="checkbox" value="Téléchargement ZIP" /> Téléchargement ZIP</label>
+            <label><input type="checkbox" value="Téléchargement ZIP" checked /> Téléchargement ZIP</label>
             <label><input type="checkbox" value="Espace utilisateur" /> Espace utilisateur</label>
             <label><input type="checkbox" value="Animations" /> Animations</label>
             <label><input type="checkbox" value="Mode sombre" /> Mode sombre</label>
@@ -218,7 +248,7 @@
         </div>
 
         <div class="form-actions">
-          <button class="btn primary full" type="submit">🌿 Générer</button>
+          <button class="btn primary full" type="submit">🌿 Générer (-10 crédits)</button>
           <button class="btn secondary full" type="button" id="resetBtn">Réinitialiser</button>
         </div>
       </form>
@@ -228,16 +258,16 @@
           <span>Résultat</span>
           <div>
             <button id="copyBtn">Copier</button>
-            <button id="downloadBtn">Télécharger</button>
+            <button id="downloadBtn">Télécharger ZIP</button>
           </div>
         </div>
 
         <div class="result-tabs">
-          <button class="tab active" data-tab="prompt">Prompt</button>
-          <button class="tab" data-tab="fakecode">Aperçu code</button>
+          <button class="tab active" data-tab="prompt">Résultat</button>
+          <button class="tab" data-tab="fakecode">Fichiers</button>
         </div>
 
-        <pre id="resultText">Remplis le formulaire puis clique sur générer.</pre>
+        <pre id="resultText">Connecte-toi, remplis le formulaire puis clique sur générer.</pre>
       </aside>
     </section>
 
@@ -249,7 +279,7 @@
 
     <section class="history-panel">
       <div class="history-top">
-        <h3>Mes templates sauvegardés</h3>
+        <h3>Mes sites sauvegardés</h3>
         <button class="small-btn danger" id="clearHistoryBtn">Vider l’historique</button>
       </div>
       <div class="history-list" id="historyList"></div>
@@ -265,9 +295,9 @@
         <h3>Gratuit</h3>
         <p class="price">0€</p>
         <ul>
-          <li>3 générations par jour</li>
-          <li>Templates simples</li>
-          <li>Prompts détaillés</li>
+          <li>100 crédits offerts</li>
+          <li>10 crédits par génération</li>
+          <li>Téléchargement ZIP</li>
           <li>Sauvegarde locale</li>
         </ul>
         <button class="btn secondary full" id="freeBtn">Utiliser gratuit</button>
@@ -278,31 +308,120 @@
         <h3>Pro</h3>
         <p class="price">5€/mois</p>
         <ul>
-          <li>Générations illimitées</li>
+          <li>Crédits illimités</li>
           <li>Descriptions ultra détaillées</li>
           <li>Historique complet</li>
-          <li>Export texte</li>
-          <li>Prêt pour future API IA</li>
+          <li>Téléchargement ZIP illimité</li>
+          <li>Génération IA avancée</li>
         </ul>
-        <button class="btn primary full" id="proBtn">Activer Pro démo</button>
+        <button class="btn primary full" id="proBtn">Activer Pro</button>
       </div>
     </section>
   </main>
 
   <footer>
-    <p>Built by <strong>MrTiger X</strong> — créer dans l’ombre, vendre avec style.</p>
+    <p>© Siteo — Transforme tes idées en sites web.</p>
   </footer>
 
   <div class="modal hidden" id="loginModal">
     <div class="modal-card">
-      <button class="close-btn" id="closeLoginBtn">×</button>
-      <h2>Connexion</h2>
-      <p>Version locale : entre un pseudo pour créer un faux compte de test.</p>
+      <button class="close-btn" data-close-modal="loginModal">×</button>
+      <h2>Connexion / Inscription</h2>
+      <p>Crée un compte local pour tester Siteo. Tes crédits et ton historique sont sauvegardés dans ce navigateur.</p>
 
       <label for="usernameInput">Pseudo</label>
-      <input id="usernameInput" type="text" placeholder="Ex : MrTiger X" />
+      <input id="usernameInput" type="text" placeholder="Ex : Créateur Pro" />
 
-      <button class="btn primary full" id="loginBtn">Se connecter</button>
+      <label for="emailInput">Email</label>
+      <input id="emailInput" type="email" placeholder="exemple@email.com" />
+
+      <label for="passwordInput">Mot de passe</label>
+      <input id="passwordInput" type="password" placeholder="Minimum 4 caractères" />
+
+      <button class="btn primary full" id="loginBtn">Créer mon compte / Me connecter</button>
+      <p class="small-note">Version actuelle : compte local. Pour une vraie sécurité en ligne, il faudra connecter Supabase.</p>
+    </div>
+  </div>
+
+  <div class="modal hidden" id="promptHelpModal">
+    <div class="modal-card large-modal">
+      <button class="close-btn" data-close-modal="promptHelpModal">×</button>
+      <h2>💡 Comment écrire un bon prompt ?</h2>
+      <p>Plus tu donnes de détails, meilleur sera le site généré.</p>
+
+      <div class="help-steps">
+        <div><strong>1. Sujet</strong><span>Explique le type de site : portfolio, boutique, blog, restaurant, Roblox...</span></div>
+        <div><strong>2. Style</strong><span>Indique l’ambiance : premium, naturel, bleu/vert, médiéval, pâtisserie...</span></div>
+        <div><strong>3. Sections</strong><span>Liste les pages ou blocs : accueil, services, tarifs, contact, galerie...</span></div>
+        <div><strong>4. Fonctions</strong><span>Demande formulaire, animations, filtres, FAQ, boutons, responsive mobile...</span></div>
+      </div>
+
+      <h3>Exemple à copier :</h3>
+      <pre class="mini-pre">Créer un site portfolio premium pour un développeur Roblox.
+
+Style : bleu et vert, moderne, professionnel, avec animations douces.
+
+Sections :
+- Accueil avec gros titre
+- À propos
+- Compétences
+- Projets Roblox
+- Services
+- Contact
+
+Ajouter :
+- cartes premium
+- boutons arrondis
+- design responsive mobile et PC
+- footer propre
+
+Créer index.html, style.css et script.js.</pre>
+    </div>
+  </div>
+
+  <div class="modal hidden" id="extractHelpModal">
+    <div class="modal-card large-modal">
+      <button class="close-btn" data-close-modal="extractHelpModal">×</button>
+      <h2>📦 Comment utiliser le ZIP téléchargé ?</h2>
+      <ol class="ordered-help">
+        <li>Clique sur <strong>Télécharger ZIP</strong>.</li>
+        <li>Fais clic droit sur le ZIP puis <strong>Extraire tout</strong>.</li>
+        <li>Garde les 3 fichiers dans le même dossier :
+          <code>index.html</code>, <code>style.css</code>, <code>script.js</code>.
+        </li>
+        <li>Double-clique sur <code>index.html</code> pour ouvrir le site.</li>
+      </ol>
+      <p><strong>Important :</strong> ne sépare pas les fichiers. Le HTML utilise <code>style.css</code> pour le design et <code>script.js</code> pour les interactions.</p>
+    </div>
+  </div>
+
+  <div class="modal hidden" id="deployHelpModal">
+    <div class="modal-card large-modal">
+      <button class="close-btn" data-close-modal="deployHelpModal">×</button>
+      <h2>🚀 Comment mettre ton site généré en ligne ?</h2>
+      <ol class="ordered-help">
+        <li>Extrais le ZIP généré.</li>
+        <li>Vérifie que <code>index.html</code>, <code>style.css</code> et <code>script.js</code> sont ensemble.</li>
+        <li>Crée un repo GitHub et ajoute les 3 fichiers.</li>
+        <li>Sur Render, choisis <strong>Static Site</strong> pour un simple site HTML/CSS/JS.</li>
+        <li>Build Command : laisse vide. Publish Directory : <code>.</code></li>
+      </ol>
+      <p>Pour un projet Node.js comme Siteo lui-même, il faut utiliser <strong>Web Service</strong> avec <code>npm install</code> et <code>npm start</code>.</p>
+    </div>
+  </div>
+
+  <div class="modal hidden" id="privacyModal">
+    <div class="modal-card large-modal">
+      <button class="close-btn" data-close-modal="privacyModal">×</button>
+      <h2>🔒 Confidentialité</h2>
+      <p>Siteo utilise une IA externe pour générer les fichiers du site à partir de ta description.</p>
+      <ul class="privacy-list">
+        <li>Ne mets pas d’informations sensibles dans ton prompt.</li>
+        <li>Tes crédits, ton pseudo et ton historique sont sauvegardés localement dans ton navigateur.</li>
+        <li>Les prompts envoyés servent uniquement à générer le site demandé.</li>
+        <li>En version professionnelle, les comptes et crédits devront être sécurisés avec une vraie base de données.</li>
+      </ul>
+      <p class="small-note">Cette version est une base fonctionnelle. Pour une exploitation commerciale complète, ajoute une vraie authentification, une base de données et des conditions d’utilisation.</p>
     </div>
   </div>
 
