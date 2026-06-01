@@ -1,10 +1,9 @@
-const STORAGE_KEY = "mrtigerx_ai_data_v1";
+const STORAGE_KEY = "siteo_ai_data_v2";
 
 const defaultData = {
   user: null,
   plan: "free",
-  dailyDate: new Date().toDateString(),
-  dailyCount: 0,
+  credits: 100,
   history: []
 };
 
@@ -30,10 +29,12 @@ const clearHistoryBtn = document.getElementById("clearHistoryBtn");
 const loginModal = document.getElementById("loginModal");
 const loginOpenBtn = document.getElementById("loginOpenBtn");
 const demoLoginBtn = document.getElementById("demoLoginBtn");
-const closeLoginBtn = document.getElementById("closeLoginBtn");
+const lockedLoginBtn = document.getElementById("lockedLoginBtn");
 const loginBtn = document.getElementById("loginBtn");
 const logoutBtn = document.getElementById("logoutBtn");
 const usernameInput = document.getElementById("usernameInput");
+const emailInput = document.getElementById("emailInput");
+const passwordInput = document.getElementById("passwordInput");
 
 const upgradeBtn = document.getElementById("upgradeBtn");
 const proBtn = document.getElementById("proBtn");
@@ -58,36 +59,40 @@ function saveData() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 }
 
-function resetDailyIfNeeded() {
-  const today = new Date().toDateString();
-  if (data.dailyDate !== today) {
-    data.dailyDate = today;
-    data.dailyCount = 0;
+function ensureCreditsField() {
+  if (typeof data.credits !== "number") {
+    data.credits = 100;
     saveData();
   }
 }
 
+function isLoggedIn() {
+  return Boolean(data.user);
+}
+
 function updateUI() {
-  resetDailyIfNeeded();
+  ensureCreditsField();
 
   const isPro = data.plan === "pro";
   const username = data.user ? data.user.username : "Invité";
 
-  dailyCount.textContent = isPro ? "∞" : `${data.dailyCount}/3`;
+  dailyCount.textContent = isPro ? "∞" : `${data.credits} crédits`;
   accountStatus.textContent = username;
   planStatus.textContent = isPro ? "Pro" : "Free";
 
   if (data.user) {
     loginOpenBtn.classList.add("hidden");
     logoutBtn.classList.remove("hidden");
+    form.classList.remove("locked");
   } else {
     loginOpenBtn.classList.remove("hidden");
     logoutBtn.classList.add("hidden");
+    form.classList.add("locked");
   }
 
   userNotice.innerHTML = isPro
-    ? "<strong>Mode actuel :</strong> <span>Plan Pro activé en démo. Générations illimitées dans cette version locale.</span>"
-    : "<strong>Mode actuel :</strong> <span>Version gratuite : 3 générations par jour. Le Pro peut être activé en démo.</span>";
+    ? "<strong>Mode actuel :</strong> <span>Plan Pro actif : crédits illimités et téléchargements ZIP illimités.</span>"
+    : `<strong>Mode actuel :</strong> <span>Version gratuite : ${data.credits} crédits restants. Chaque génération coûte 10 crédits.</span>`;
 
   renderHistory();
 }
@@ -99,19 +104,27 @@ function getCheckedValues() {
 }
 
 function canGenerate() {
-  resetDailyIfNeeded();
+  ensureCreditsField();
+
+  if (!isLoggedIn()) {
+    return false;
+  }
 
   if (data.plan === "pro") {
     return true;
   }
 
-  return data.dailyCount < 3;
+  return data.credits >= 10;
 }
 
-function increaseCount() {
-  if (data.plan !== "pro") {
-    data.dailyCount += 1;
+function removeCredits() {
+  ensureCreditsField();
+
+  if (data.plan === "pro") {
+    return;
   }
+
+  data.credits = Math.max(0, data.credits - 10);
 }
 
 function generatePrompt() {
@@ -131,7 +144,7 @@ function generatePrompt() {
   const pages = allChecked.filter(value => pagesList.includes(value));
   const features = allChecked.filter(value => featuresList.includes(value));
 
-  return `Crée un template de site web complet.
+  return `Crée un site web complet.
 
 NOM DU PROJET :
 ${projectName}
@@ -162,40 +175,27 @@ DESCRIPTION COMPLÈTE :
 ${description}
 
 CONSIGNES IMPORTANTES :
-- Génère un design moderne, naturel, propre et responsive.
-- Utilise une ambiance douce avec des formes arrondies, feuilles, vert, beige et éléments organiques.
+- Génère un design moderne, propre, responsive et professionnel.
 - Donne le code séparé en 3 fichiers : index.html, style.css et script.js.
 - Le code doit être clair, modifiable et prêt à utiliser.
 - Ajoute un accueil professionnel, des sections bien structurées et des boutons visibles.
-- N’utilise pas de framework compliqué pour cette première version.`;
+- N’utilise pas de framework compliqué.
+- Évite les images externes obligatoires qui cassent le site.
+- Si tu veux des icônes, utilise des emojis ou du CSS simple.`;
 }
 
 function generateFakeCodePreview(projectName) {
-  return `// Aperçu démo - la vraie génération IA sera branchée après
-
-📁 ${projectName || "template"}/
+  return `📁 ${projectName || "template"}/
 ├── index.html
 ├── style.css
 └── script.js
 
-index.html :
-<header>
-  <nav>Logo + menu</nav>
-  <section class="hero">
-    <h1>Ton titre principal</h1>
-    <p>Description professionnelle</p>
-    <button>Commencer</button>
-  </section>
-</header>
+Le ZIP téléchargé contiendra directement ces 3 fichiers.
 
-style.css :
-:root {
-  --green: #4d7c50;
-  --cream: #f3f0e6;
-}
-
-script.js :
-console.log("Template généré par MrTiger X AI");`;
+Important :
+- index.html appelle style.css pour le design.
+- index.html appelle script.js pour les interactions.
+- Garde toujours les 3 fichiers dans le même dossier.`;
 }
 
 function saveGeneration(prompt, fakeCode) {
@@ -210,6 +210,7 @@ function saveGeneration(prompt, fakeCode) {
     style,
     prompt,
     fakeCode,
+    files: window.lastGeneratedFiles || null,
     date: new Date().toLocaleString("fr-FR")
   };
 
@@ -257,100 +258,71 @@ function escapeHtml(text) {
   }[char]));
 }
 
-function downloadText(filename, content) {
-  const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement("a");
-  link.href = url;
-  link.download = filename;
-  link.click();
-  URL.revokeObjectURL(url);
+function formatGeneratedResult(files) {
+  return `INDEX.HTML :
+
+${files.html || ""}
+
+
+STYLE.CSS :
+
+${files.css || ""}
+
+
+SCRIPT.JS :
+
+${files.js || ""}`;
 }
 
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
 
+  if (!isLoggedIn()) {
+    alert("Tu dois créer un compte ou te connecter pour tester Siteo.");
+    openLogin();
+    return;
+  }
+
   if (!canGenerate()) {
-    alert("Limite atteinte");
+    alert("Tu n’as plus assez de crédits. Passe Pro pour avoir des crédits illimités.");
     return;
   }
 
   const prompt = generatePrompt();
 
+  resultText.textContent = "Génération en cours...";
+
   try {
-
-    const response =
-    await fetch("/api/generate",{
-
-      method:"POST",
-
-      headers:{
-        "Content-Type":
-        "application/json"
+    const response = await fetch("/api/generate", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
       },
-
-      body:
-      JSON.stringify({
-        prompt
-      })
-
+      body: JSON.stringify({ prompt })
     });
 
-    const apiData =
-    await response.json();
+    const apiData = await response.json();
 
-window.lastGeneratedFiles = {
- html: apiData.html,
- css: apiData.css,
- js: apiData.js
-};
+    window.lastGeneratedFiles = {
+      html: apiData.html || "",
+      css: apiData.css || "",
+      js: apiData.js || ""
+    };
 
-const data =
-apiData;
+    currentPrompt = formatGeneratedResult(window.lastGeneratedFiles);
+    currentFakeCode = generateFakeCodePreview(document.getElementById("projectName").value || "template");
 
-    currentPrompt =
-`INDEX.HTML :
+    removeCredits();
 
-${data.html}
-
-
-STYLE.CSS :
-
-${data.css}
-
-
-SCRIPT.JS :
-
-${data.js}`;
-
-    currentFakeCode =
-    currentPrompt;
-
-    increaseCount();
-
-    saveGeneration(
-      currentPrompt,
-      currentFakeCode
-    );
-
+    saveGeneration(currentPrompt, currentFakeCode);
     saveData();
-
     updateUI();
-
     renderResult();
 
-  }
-
-  catch(error){
-
-    alert(
-      "Erreur génération"
-    );
-
+  } catch (error) {
+    alert("Erreur génération");
     console.error(error);
-
   }
-
 });
 
 document.querySelectorAll(".tab").forEach(tab => {
@@ -374,25 +346,32 @@ copyBtn.addEventListener("click", async () => {
   }
 });
 
-downloadBtn.addEventListener("click", async()=>{
+downloadBtn.addEventListener("click", async () => {
+  if (!window.lastGeneratedFiles) {
+    alert("Génère d'abord un template.");
+    return;
+  }
 
-if(!window.lastGeneratedFiles){alert("Génère d'abord");return;}
+  const zip = new JSZip();
 
-const zip=new JSZip();
-zip.file("index.html",window.lastGeneratedFiles.html||"");
-zip.file("style.css",window.lastGeneratedFiles.css||"");
-zip.file("script.js",window.lastGeneratedFiles.js||"");
+  zip.file("index.html", window.lastGeneratedFiles.html || "");
+  zip.file("style.css", window.lastGeneratedFiles.css || "");
+  zip.file("script.js", window.lastGeneratedFiles.js || "");
 
-const content=await zip.generateAsync({type:"blob"});
-const a=document.createElement("a");
-a.href=URL.createObjectURL(content);
+  const content = await zip.generateAsync({ type: "blob" });
 
-const projectName=document.getElementById("projectName")?.value||"template";
-a.download=`${projectName.replace(/[^a-z0-9]/gi,"-").toLowerCase()}.zip`;
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(content);
 
-a.click();
-URL.revokeObjectURL(a.href);
+  const projectName = document.getElementById("projectName")?.value || "template";
 
+  a.download = `${projectName
+    .replace(/[^a-z0-9]/gi, "-")
+    .toLowerCase()}.zip`;
+
+  a.click();
+
+  URL.revokeObjectURL(a.href);
 });
 
 resetBtn.addEventListener("click", () => {
@@ -412,6 +391,9 @@ historyList.addEventListener("click", async (event) => {
   if (action === "load") {
     currentPrompt = item.prompt;
     currentFakeCode = item.fakeCode;
+    if (item.files) {
+      window.lastGeneratedFiles = item.files;
+    }
     currentTab = "prompt";
     renderResult();
 
@@ -450,19 +432,57 @@ function openLogin() {
   usernameInput.focus();
 }
 
-function closeLogin() {
-  loginModal.classList.add("hidden");
+function closeModal(id) {
+  document.getElementById(id)?.classList.add("hidden");
+}
+
+function openModal(id) {
+  document.getElementById(id)?.classList.remove("hidden");
 }
 
 loginOpenBtn.addEventListener("click", openLogin);
 demoLoginBtn.addEventListener("click", openLogin);
-closeLoginBtn.addEventListener("click", closeLogin);
+lockedLoginBtn.addEventListener("click", openLogin);
+
+document.querySelectorAll("[data-open-modal]").forEach(button => {
+  button.addEventListener("click", () => openModal(button.dataset.openModal));
+});
+
+document.querySelectorAll("[data-close-modal]").forEach(button => {
+  button.addEventListener("click", () => closeModal(button.dataset.closeModal));
+});
+
+document.querySelectorAll(".modal").forEach(modal => {
+  modal.addEventListener("click", event => {
+    if (event.target === modal) {
+      modal.classList.add("hidden");
+    }
+  });
+});
 
 loginBtn.addEventListener("click", () => {
-  const username = usernameInput.value.trim() || "MrTiger X";
-  data.user = { username };
+  const username = usernameInput.value.trim();
+  const email = emailInput.value.trim();
+  const password = passwordInput.value.trim();
+
+  if (!username || !email || password.length < 4) {
+    alert("Entre un pseudo, un email et un mot de passe de minimum 4 caractères.");
+    return;
+  }
+
+  const isNewUser = !data.user;
+
+  data.user = {
+    username,
+    email
+  };
+
+  if (isNewUser && typeof data.credits !== "number") {
+    data.credits = 100;
+  }
+
   saveData();
-  closeLogin();
+  closeModal("loginModal");
   updateUI();
 });
 
@@ -474,13 +494,17 @@ logoutBtn.addEventListener("click", () => {
 });
 
 function activatePro() {
-  data.plan = "pro";
-  if (!data.user) {
-    data.user = { username: "MrTiger X" };
+  if (!isLoggedIn()) {
+    alert("Connecte-toi avant d’activer le plan Pro.");
+    openLogin();
+    return;
   }
+
+  data.plan = "pro";
   saveData();
   updateUI();
-  alert("Plan Pro activé en mode démo.");
+
+  alert("Plan Pro activé. Crédits illimités.");
 }
 
 upgradeBtn.addEventListener("click", activatePro);
@@ -488,9 +512,15 @@ proBtn.addEventListener("click", activatePro);
 
 freeBtn.addEventListener("click", () => {
   data.plan = "free";
+
+  if (typeof data.credits !== "number" || data.credits < 1) {
+    data.credits = 100;
+  }
+
   saveData();
   updateUI();
-  alert("Plan gratuit activé.");
+
+  alert("Plan gratuit activé. Tu as 100 crédits.");
 });
 
 updateUI();
