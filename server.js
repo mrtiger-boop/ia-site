@@ -6,262 +6,143 @@ dotenv.config();
 
 console.log(
   "CLE OPENROUTER :",
-  process.env.OPENROUTER_API_KEY
-    ? "OK"
-    : "MANQUANTE"
+  process.env.OPENROUTER_API_KEY ? "OK" : "MANQUANTE"
 );
 
 const app = express();
 
 app.use(cors());
-app.use(express.json({ limit: "2mb" }));
+app.use(express.json({ limit: "4mb" }));
 app.use(express.static("public"));
 
-app.post("/api/generate", async (req, res) => {
+function safeJsonParse(content) {
+  if (!content) return null;
+
+  let cleaned = content
+    .replace(/```json/g, "")
+    .replace(/```/g, "")
+    .trim();
 
   try {
+    return JSON.parse(cleaned);
+  } catch {
+    const first = cleaned.indexOf("{");
+    const last = cleaned.lastIndexOf("}");
+    if (first !== -1 && last !== -1 && last > first) {
+      const extracted = cleaned.slice(first, last + 1);
+      try {
+        return JSON.parse(extracted);
+      } catch {
+        return null;
+      }
+    }
+    return null;
+  }
+}
 
+app.post("/api/generate", async (req, res) => {
+  try {
     const { prompt } = req.body;
 
     if (!process.env.OPENROUTER_API_KEY) {
-
       return res.json({
-
-        html:
-        "<h1>Clé API manquante</h1>",
-
-        css:
-        "",
-
-        js:
-        "Ajoute OPENROUTER_API_KEY dans .env"
-
+        html: "<h1>Clé API manquante</h1>",
+        css: "",
+        js: "Ajoute OPENROUTER_API_KEY dans les variables d'environnement Render ou dans .env en local."
       });
-
     }
 
-    const response =
-    await fetch(
+    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+      method: "POST",
 
-      "https://openrouter.ai/api/v1/chat/completions",
+      headers: {
+        Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
+        "Content-Type": "application/json",
+        "HTTP-Referer": process.env.PUBLIC_SITE_URL || "http://localhost:3000",
+        "X-Title": "Siteo"
+      },
 
-      {
+      body: JSON.stringify({
+        model: "openrouter/auto",
 
-        method:
-        "POST",
+        messages: [
+          {
+            role: "system",
+            content: `
+Tu es Siteo, une IA qui crée des sites web complets.
 
-        headers:{
+Réponds uniquement avec un JSON valide.
+Ne mets pas de texte avant.
+Ne mets pas de texte après.
+Ne mets pas de markdown.
 
-          Authorization:
-          `Bearer ${process.env.OPENROUTER_API_KEY}`,
-
-          "Content-Type":
-          "application/json",
-
-          "HTTP-Referer":
-          "http://localhost:3000",
-
-          "X-Title":
-          "MrTiger X AI"
-
-        },
-
-        body:
-
-        JSON.stringify({
-
-          model:
-          "openrouter/auto",
-
-          messages:[
-
-            {
-
-              role:
-              "system",
-
-              content:
-`
-Tu es une IA qui crée des templates web.
-
-Réponds uniquement avec JSON :
-
+Format obligatoire :
 {
-"html":"...",
-"css":"...",
-"js":"..."
+  "html": "...",
+  "css": "...",
+  "js": "..."
 }
 
-Pas de texte autour.
-Pas de markdown.
+Règles :
+- Le HTML doit être complet avec <!DOCTYPE html>, <html>, <head>, <body>.
+- Le HTML doit lier style.css et script.js.
+- Le CSS doit être complet, responsive et moderne.
+- Le JS doit être simple, utile et sans dépendance externe obligatoire.
+- N'utilise pas d'images locales comme icons/check.svg.
+- Si tu veux des icônes, utilise des emojis ou du CSS.
+- Évite les ressources externes qui pourraient casser.
 `
+          },
+          {
+            role: "user",
+            content: prompt
+          }
+        ]
+      })
+    });
 
-            },
+    const ai = await response.json();
 
-            {
+    console.log("REPONSE OPENROUTER :", JSON.stringify(ai, null, 2));
 
-              role:
-              "user",
-
-              content:
-              prompt
-
-            }
-
-          ]
-
-        })
-
-      }
-
-    );
-
-    const ai =
-    await response.json();
-
-    console.log(
-      "REPONSE :",
-      JSON.stringify(
-        ai,
-        null,
-        2
-      )
-    );
-
-    if(
-      !response.ok
-    ){
-
+    if (!response.ok) {
       return res.json({
-
-        html:
-        "<h1>Erreur OpenRouter</h1>",
-
-        css:
-        "",
-
-        js:
-        JSON.stringify(
-          ai,
-          null,
-          2
-        )
-
+        html: "<h1>Erreur OpenRouter</h1>",
+        css: "",
+        js: JSON.stringify(ai, null, 2)
       });
-
     }
 
-    let content =
+    const content = ai.choices?.[0]?.message?.content;
+    const parsed = safeJsonParse(content);
 
-    ai
-    .choices?.[0]
-    ?.message
-    ?.content;
-
-    if(
-      !content
-    ){
-
+    if (!parsed) {
       return res.json({
-
-        html:
-        "<h1>Aucune réponse IA</h1>",
-
-        css:
-        "",
-
-        js:
-        JSON.stringify(
-          ai,
-          null,
-          2
-        )
-
+        html: "<h1>Réponse IA non lisible</h1>",
+        css: "",
+        js: content || JSON.stringify(ai, null, 2)
       });
-
     }
-
-    content =
-
-    content
-
-    .replace(
-      /```json/g,
-      ""
-    )
-
-    .replace(
-      /```/g,
-      ""
-    )
-
-    .trim();
-
-    const parsed =
-    JSON.parse(
-      content
-    );
 
     return res.json({
-
-      html:
-      parsed.html
-      ||
-      "<h1>HTML vide</h1>",
-
-      css:
-      parsed.css
-      ||
-      "",
-
-      js:
-      parsed.js
-      ||
-      ""
-
+      html: parsed.html || "<h1>HTML vide</h1>",
+      css: parsed.css || "",
+      js: parsed.js || ""
     });
 
-  }
+  } catch (error) {
+    console.error("ERREUR SERVEUR :", error);
 
-  catch(error){
-
-    console.error(
-      "ERREUR :",
-      error
-    );
-
-    return res
-    .status(500)
-
-    .json({
-
-      html:
-      "<h1>Erreur serveur</h1>",
-
-      css:
-      "",
-
-      js:
-      String(
-        error
-      )
-
+    return res.status(500).json({
+      html: "<h1>Erreur serveur</h1>",
+      css: "",
+      js: String(error)
     });
-
   }
-
 });
 
-app.listen(
+const PORT = process.env.PORT || 3000;
 
-3000,
-
-()=>{
-
-console.log(
-"http://localhost:3000"
-);
-
-}
-
-);
+app.listen(PORT, () => {
+  console.log(`Siteo lancé sur le port ${PORT}`);
+});
