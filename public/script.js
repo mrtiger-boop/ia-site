@@ -508,7 +508,12 @@ function activatePro() {
 }
 
 upgradeBtn.addEventListener("click", activatePro);
-proBtn.addEventListener("click", activatePro);
+proBtn.addEventListener("click", () => {
+  window.open(
+    "https://buy.stripe.com/3cIaEQ5m3fCg6DLex897G00",
+    "_blank"
+  );
+});
 
 freeBtn.addEventListener("click", () => {
   data.plan = "free";
