@@ -493,24 +493,19 @@ logoutBtn.addEventListener("click", () => {
   updateUI();
 });
 
-function activatePro() {
-  if (!isLoggedIn()) {
-    alert("Connecte-toi avant d’activer le plan Pro.");
-    openLogin();
-    return;
-  }
+const STRIPE_URL =
+"https://buy.stripe.com/3cIaEQ5m3fCg6DLex897G00";
 
-  data.plan = "pro";
-  saveData();
-  updateUI();
+upgradeBtn.addEventListener("click", () => {
+  window.open(
+    STRIPE_URL,
+    "_blank"
+  );
+});
 
-  alert("Plan Pro activé. Crédits illimités.");
-}
-
-upgradeBtn.addEventListener("click", activatePro);
 proBtn.addEventListener("click", () => {
   window.open(
-    "https://buy.stripe.com/3cIaEQ5m3fCg6DLex897G00",
+    STRIPE_URL,
     "_blank"
   );
 });
