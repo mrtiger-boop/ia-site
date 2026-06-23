@@ -1,5 +1,5 @@
 {
-  "name": "siteo-ai",
+  "name": "siteo-ultra-pro",
   "version": "1.0.0",
   "type": "module",
   "scripts": {
@@ -9,5 +9,6 @@
     "express": "^4.21.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.0"
-  }
+  },
+  "license": "UNLICENSED"
 }
