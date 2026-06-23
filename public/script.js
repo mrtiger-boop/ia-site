@@ -1,3 +1,12 @@
+const SUPABASE_URL = "https://azgahpygwlrrmozbjrqo.supabase.co/rest/v1/";
+
+const SUPABASE_KEY = "sb_publishable_fVRUhodws3p_7UVjnODJwg_7UpsyJwQ";
+
+const supabase = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
 const STORAGE_KEY = "siteo_ai_data_v2";
 
 const defaultData = {
