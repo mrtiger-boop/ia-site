@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Siteo — Profil</title>
+  <meta name="description" content="Siteo génère des sites web avec IA et exporte des fichiers HTML CSS JS prêts à utiliser." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="ambient-bg"><span class="orb orb-a"></span><span class="orb orb-b"></span><span class="orb orb-c"></span><div class="grid-glow"></div></div>
+  <header class="navbar">
+  <a class="brand" href="index.html">
+    <div class="logo-mark"><span>S</span><i></i></div>
+    <div><h1>Siteo</h1><p>AI Website Studio</p></div>
+  </a>
+
+  <button class="mobile-menu" id="mobileMenuBtn">☰</button>
+
+  <nav class="nav-links" id="navLinks">
+    <a href="index.html">Accueil</a>
+    <a href="generate.html">Générer</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="pricing.html">Offres</a>
+    <a href="help.html">Aide</a>
+    <a href="privacy.html">Confidentialité</a>
+  </nav>
+
+  <div class="account-area">
+    <button class="small-btn ghost" id="openLoginBtn">Connexion</button>
+    <button class="small-btn ghost" id="openSignupBtn">Inscription</button>
+    <button class="small-btn pro-btn" id="upgradeBtn">Passer Pro</button>
+    <button class="small-btn ghost hidden" id="logoutBtn">Déconnexion</button>
+  </div>
+</header>
+  <main><section class="section-title reveal"><span>Profil</span><h2>Ton espace Siteo.</h2><p>Compte, crédits, abonnement et historique.</p></section>
+<section class="profile-layout reveal">
+  <article class="profile-card">
+    <div class="profile-avatar">S</div>
+    <h3 id="dashUsername">Invité</h3>
+    <p id="dashEmail">Connecte-toi pour voir ton profil.</p>
+    <div class="profile-tags"><span id="dashPlan">Free</span><span id="dashVerified">Non connecté</span></div>
+  </article>
+  <article class="profile-card"><span>Crédits disponibles</span><strong id="dashCredits">0 crédit</strong><p>Le plan gratuit utilise 10 crédits par génération. Le Pro est illimité.</p></article>
+  <article class="profile-card"><span>Compte créé</span><strong id="dashCreated">-</strong><p>Les données du profil viennent de Supabase.</p></article>
+</section>
+<section class="notice reveal" id="userNotice"><strong>Statut :</strong><span> Connecte-toi pour voir ton profil.</span></section>
+<section class="billing-card reveal"><div><span>Abonnement</span><h3>Gérer ou annuler le Pro</h3><p>Avec Stripe, l'annulation prend effet à la fin de la période déjà payée. Pour l'essai gratuit, tu peux annuler avant la fin des 7 jours.</p></div><button class="btn secondary" id="cancelSubBtn">Gérer l'abonnement</button></section>
+<section class="history-panel reveal"><div class="history-top"><h3>Historique des créations</h3><button class="small-btn danger" id="clearHistoryBtn">Vider l’historique</button></div><div class="history-list" id="historyList"></div></section><div class="hidden">
+  <strong id="creditCount"></strong><strong id="accountStatus"></strong><strong id="planStatus"></strong>
+  <strong id="dashCredits"></strong><strong id="dashEmail"></strong><strong id="dashPlan"></strong><strong id="dashUsername"></strong><strong id="dashVerified"></strong><strong id="dashCreated"></strong>
+  <section id="userNotice"></section><div id="historyList"></div><button id="clearHistoryBtn"></button>
+  <form id="templateForm"></form><pre id="resultText"></pre><button id="copyBtn"></button><button id="downloadBtn"></button><button id="resetBtn"></button>
+  <button id="freeBtn"></button><button id="proBtn"></button><button id="cancelSubBtn"></button><button id="buy100Btn"></button><button id="buy1000Btn"></button>
+</div></main>
+  <footer class="site-footer">
+  <div><div class="footer-logo"><span>S</span> Siteo</div><p>Transforme une idée en site web complet.</p></div>
+  <div><a href="generate.html">Créer</a><a href="pricing.html">Offres</a><a href="help.html">Aide</a><a href="privacy.html">Confidentialité</a></div>
+</footer>
+
+<div class="modal hidden" id="signupModal">
+  <div class="modal-card auth-card">
+    <button class="close-btn" data-close-modal="signupModal">×</button>
+    <div class="modal-logo"><span>S</span></div>
+    <h2>Inscription</h2>
+    <p>Crée ton compte. Tu devras confirmer ton email avant de générer.</p>
+    <label for="signupUsername">Pseudo</label><input id="signupUsername" type="text" placeholder="Ex : Créateur Pro" />
+    <label for="signupEmail">Email</label><input id="signupEmail" type="email" placeholder="exemple@email.com" />
+    <label for="signupPassword">Mot de passe</label><input id="signupPassword" type="password" placeholder="Minimum 6 caractères" />
+    <button class="btn primary full" id="signupBtn">Créer mon compte</button>
+    <button class="btn secondary full" id="switchToLoginBtn">J'ai déjà un compte</button>
+    <p class="small-note">100 crédits seront ajoutés au profil après création.</p>
+  </div>
+</div>
+
+<div class="modal hidden" id="loginModal">
+  <div class="modal-card auth-card">
+    <button class="close-btn" data-close-modal="loginModal">×</button>
+    <div class="modal-logo"><span>S</span></div>
+    <h2>Connexion</h2>
+    <p>Connecte-toi avec ton email et ton mot de passe.</p>
+    <label for="loginEmail">Email</label><input id="loginEmail" type="email" placeholder="exemple@email.com" />
+    <label for="loginPassword">Mot de passe</label><input id="loginPassword" type="password" placeholder="Ton mot de passe" />
+    <button class="btn primary full" id="loginBtn">Me connecter</button>
+    <button class="btn secondary full" id="openResetBtn">Mot de passe oublié</button>
+    <button class="btn tertiary full" id="switchToSignupBtn">Créer un compte</button>
+  </div>
+</div>
+
+<div class="modal hidden" id="resetModal">
+  <div class="modal-card auth-card">
+    <button class="close-btn" data-close-modal="resetModal">×</button>
+    <div class="modal-logo"><span>S</span></div>
+    <h2>Réinitialiser le mot de passe</h2>
+    <p>Entre ton email. Supabase t'enverra un lien de réinitialisation.</p>
+    <label for="resetEmail">Email</label><input id="resetEmail" type="email" placeholder="exemple@email.com" />
+    <button class="btn primary full" id="resetPasswordBtn">Envoyer le lien</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="script.js"></script>
+</body>
+</html>

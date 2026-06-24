@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Siteo — Accueil</title>
+  <meta name="description" content="Siteo génère des sites web avec IA et exporte des fichiers HTML CSS JS prêts à utiliser." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="ambient-bg"><span class="orb orb-a"></span><span class="orb orb-b"></span><span class="orb orb-c"></span><div class="grid-glow"></div></div>
+  <header class="navbar">
+  <a class="brand" href="index.html">
+    <div class="logo-mark"><span>S</span><i></i></div>
+    <div><h1>Siteo</h1><p>AI Website Studio</p></div>
+  </a>
+
+  <button class="mobile-menu" id="mobileMenuBtn">☰</button>
+
+  <nav class="nav-links" id="navLinks">
+    <a href="index.html">Accueil</a>
+    <a href="generate.html">Générer</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="pricing.html">Offres</a>
+    <a href="help.html">Aide</a>
+    <a href="privacy.html">Confidentialité</a>
+  </nav>
+
+  <div class="account-area">
+    <button class="small-btn ghost" id="openLoginBtn">Connexion</button>
+    <button class="small-btn ghost" id="openSignupBtn">Inscription</button>
+    <button class="small-btn pro-btn" id="upgradeBtn">Passer Pro</button>
+    <button class="small-btn ghost hidden" id="logoutBtn">Déconnexion</button>
+  </div>
+</header>
+  <main><section class="hero">
+  <div class="hero-copy reveal">
+    <span class="eyebrow">✨ Supabase • Stripe • Boutique crédits • ZIP automatique</span>
+    <h2>Le studio IA qui transforme tes idées en sites web.</h2>
+    <p>Décris ton projet, choisis un style, génère un site complet, puis télécharge un ZIP avec <strong>index.html</strong>, <strong>style.css</strong> et <strong>script.js</strong>.</p>
+    <div class="hero-actions">
+      <a class="btn primary magnetic" href="generate.html">Créer un site</a>
+      <button class="btn secondary" id="heroSignupBtn">Créer un compte</button>
+      <a class="btn tertiary" href="shop.html">Acheter des crédits</a>
+    </div>
+    <div class="live-strip"><span></span><p>100 crédits offerts • 7 jours gratuits Pro • packs crédits</p></div>
+  </div>
+  <div class="hero-showcase reveal">
+    <div class="glass-browser"><div class="browser-dots"><i></i><i></i><i></i><b>siteo.app</b></div><div class="showcase-screen"><div class="screen-pill"></div><div class="screen-title"></div><div class="screen-line"></div><div class="screen-line short"></div><div class="screen-cards"><span></span><span></span><span></span></div></div></div>
+    <div class="float-chip chip-1">🔐 Email vérifié</div><div class="float-chip chip-2">📦 ZIP propre</div><div class="float-chip chip-3">💎 Crédit shop</div>
+  </div>
+</section>
+<section class="status-panel reveal"><div><strong id="creditCount">0 crédit</strong><span>Crédits</span></div><div><strong id="accountStatus">Invité</strong><span>Compte</span></div><div><strong id="planStatus">Free</strong><span>Plan</span></div></section>
+<section class="notice reveal" id="userNotice"><strong>Bienvenue :</strong><span> Crée un compte et confirme ton email pour utiliser Siteo.</span></section>
+<section class="quick-help reveal"><a class="help-card" href="generate.html"><strong>⚡ Générer</strong><span>Créer un site complet.</span></a><a class="help-card" href="dashboard.html"><strong>👤 Profil</strong><span>Compte, crédits, plan.</span></a><a class="help-card" href="shop.html"><strong>🛒 Boutique</strong><span>Acheter des crédits.</span></a><a class="help-card" href="pricing.html"><strong>🚀 Pro</strong><span>7 jours gratuits.</span></a></section>
+<section class="section-title reveal"><span>Siteo</span><h2>Plus complet, plus propre, plus SaaS.</h2></section>
+<section class="feature-grid"><article class="feature-card reveal"><b>01</b><h3>Compte complet</h3><p>Profil, email, crédits, plan et statut de vérification.</p></article><article class="feature-card reveal"><b>02</b><h3>7 jours gratuits</h3><p>Le Pro démarre par une semaine d'essai via Stripe.</p></article><article class="feature-card reveal"><b>03</b><h3>Boutique crédits</h3><p>100 crédits à 1,99€ ou 1000 crédits à 5,99€.</p></article><article class="feature-card reveal"><b>04</b><h3>Annulation Pro</h3><p>Annulation via portail Stripe, accès conservé jusqu'à la fin de période payée.</p></article></section><div class="hidden">
+  <strong id="creditCount"></strong><strong id="accountStatus"></strong><strong id="planStatus"></strong>
+  <strong id="dashCredits"></strong><strong id="dashEmail"></strong><strong id="dashPlan"></strong><strong id="dashUsername"></strong><strong id="dashVerified"></strong><strong id="dashCreated"></strong>
+  <section id="userNotice"></section><div id="historyList"></div><button id="clearHistoryBtn"></button>
+  <form id="templateForm"></form><pre id="resultText"></pre><button id="copyBtn"></button><button id="downloadBtn"></button><button id="resetBtn"></button>
+  <button id="freeBtn"></button><button id="proBtn"></button><button id="cancelSubBtn"></button><button id="buy100Btn"></button><button id="buy1000Btn"></button>
+</div></main>
+  <footer class="site-footer">
+  <div><div class="footer-logo"><span>S</span> Siteo</div><p>Transforme une idée en site web complet.</p></div>
+  <div><a href="generate.html">Créer</a><a href="pricing.html">Offres</a><a href="help.html">Aide</a><a href="privacy.html">Confidentialité</a></div>
+</footer>
+
+<div class="modal hidden" id="signupModal">
+  <div class="modal-card auth-card">
+    <button class="close-btn" data-close-modal="signupModal">×</button>
+    <div class="modal-logo"><span>S</span></div>
+    <h2>Inscription</h2>
+    <p>Crée ton compte. Tu devras confirmer ton email avant de générer.</p>
+    <label for="signupUsername">Pseudo</label><input id="signupUsername" type="text" placeholder="Ex : Créateur Pro" />
+    <label for="signupEmail">Email</label><input id="signupEmail" type="email" placeholder="exemple@email.com" />
+    <label for="signupPassword">Mot de passe</label><input id="signupPassword" type="password" placeholder="Minimum 6 caractères" />
+    <button class="btn primary full" id="signupBtn">Créer mon compte</button>
+    <button class="btn secondary full" id="switchToLoginBtn">J'ai déjà un compte</button>
+    <p class="small-note">100 crédits seront ajoutés au profil après création.</p>
+  </div>
+</div>
+
+<div class="modal hidden" id="loginModal">
+  <div class="modal-card auth-card">
+    <button class="close-btn" data-close-modal="loginModal">×</button>
+    <div class="modal-logo"><span>S</span></div>
+    <h2>Connexion</h2>
+    <p>Connecte-toi avec ton email et ton mot de passe.</p>
+    <label for="loginEmail">Email</label><input id="loginEmail" type="email" placeholder="exemple@email.com" />
+    <label for="loginPassword">Mot de passe</label><input id="loginPassword" type="password" placeholder="Ton mot de passe" />
+    <button class="btn primary full" id="loginBtn">Me connecter</button>
+    <button class="btn secondary full" id="openResetBtn">Mot de passe oublié</button>
+    <button class="btn tertiary full" id="switchToSignupBtn">Créer un compte</button>
+  </div>
+</div>
+
+<div class="modal hidden" id="resetModal">
+  <div class="modal-card auth-card">
+    <button class="close-btn" data-close-modal="resetModal">×</button>
+    <div class="modal-logo"><span>S</span></div>
+    <h2>Réinitialiser le mot de passe</h2>
+    <p>Entre ton email. Supabase t'enverra un lien de réinitialisation.</p>
+    <label for="resetEmail">Email</label><input id="resetEmail" type="email" placeholder="exemple@email.com" />
+    <button class="btn primary full" id="resetPasswordBtn">Envoyer le lien</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="script.js"></script>
+</body>
+</html>
