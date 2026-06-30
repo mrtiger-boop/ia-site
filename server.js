@@ -126,8 +126,27 @@ Règles :
   }
 });
 
-app.get("*", (req, res) => {
+const pages = [
+  "generate",
+  "dashboard",
+  "shop",
+  "pricing",
+  "help",
+  "privacy"
+];
+
+app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
+app.get("/:page", (req, res) => {
+  const page = req.params.page;
+
+  if (pages.includes(page)) {
+    return res.sendFile(path.join(__dirname, "public", `${page}.html`));
+  }
+
+  return res.redirect("/");
 });
 
 const PORT = process.env.PORT || 3000;
