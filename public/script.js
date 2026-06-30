@@ -88,10 +88,26 @@ async function loadProfile() {
 
 async function updateProfileCredits(newCredits) {
   if (!data.user || data.plan === "pro") return;
-  const safeCredits = Math.max(0, newCredits);
-  const { error } = await supabaseClient.from("profiles").update({ credits:safeCredits }).eq("id", data.user.id);
-  if (error) { console.error("Erreur update crédits :", error); notify("Erreur pendant la mise à jour des crédits."); return; }
-  data.credits = safeCredits;
+
+  const safeCredits = Math.max(0, Number(newCredits));
+
+  const { data: updatedProfile, error } = await supabaseClient
+    .from("profiles")
+    .update({ credits: safeCredits })
+    .eq("id", data.user.id)
+    .select()
+    .single();
+
+  if (error) {
+    console.error("Erreur update crédits :", error);
+    notify("Erreur pendant la mise à jour des crédits.");
+    return;
+  }
+
+  console.log("PROFILE MIS À JOUR :", updatedProfile);
+
+  data.profile = updatedProfile;
+  data.credits = Number(updatedProfile.credits ?? safeCredits);
 }
 
 function dateFr(value) {
