@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aide - Siteo</title>
-  <meta name="description" content="Guides, exemples de prompts et conseils pour créer des sites web avec Siteo.">
+  <title>Galerie Siteo</title>
+  <meta name="description" content="Partagez vos sites créés avec Siteo, recevez des likes et commentaires.">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://siteo.studio/help">
+  <link rel="canonical" href="https://siteo.studio/community">
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="apple-touch-icon" href="/favicon.png">
   <link rel="manifest" href="/manifest.json">
-  <meta property="og:title" content="Aide - Siteo">
-  <meta property="og:description" content="Guides, exemples de prompts et conseils pour créer des sites web avec Siteo.">
+  <meta property="og:title" content="Galerie Siteo">
+  <meta property="og:description" content="Partagez vos sites créés avec Siteo, recevez des likes et commentaires.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://siteo.studio/help">
+  <meta property="og:url" content="https://siteo.studio/community">
   <meta property="og:image" content="https://siteo.studio/favicon.png">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="/style.css">
@@ -42,18 +42,23 @@
   </div>
 </header>
   <main><section class="page-hero reveal">
-  <span class="pill">Aide</span>
-  <h1>Bien utiliser Siteo.</h1>
-  <p>Des exemples clairs pour créer de meilleurs sites.</p>
+  <span class="pill">Galerie</span>
+  <h1>Partage tes créations.</h1>
+  <p>Publie tes sites, ajoute une image, reçois des likes et des commentaires.</p>
 </section>
-<section class="help-grid reveal">
-  <article><h2>Prompt conseillé</h2><pre>Créer un site premium pour une entreprise.
-Style : bleu/violet, sombre, moderne.
-Sections : hero, services, stats, avis, FAQ, contact.
-Fonctions : animations, responsive, footer complet.
-Génère HTML, CSS et JS séparés.</pre></article>
-  <article><h2>Améliorer un site</h2><p>Colle ton ancien code dans l’onglet Améliorer, puis écris : “modernise-le”, “ajoute une boutique”, ou “rends-le plus premium”.</p></article>
-  <article><h2>Déployer</h2><p>Télécharge le ZIP, garde index.html, style.css et script.js ensemble, puis héberge sur Render, Netlify ou Vercel.</p></article>
+
+<section class="community-layout">
+  <form id="shareForm" class="form-card reveal">
+    <h2>Publier mon site</h2>
+    <label>Titre</label><input id="shareTitle" placeholder="Ex : Portfolio Roblox">
+    <label>Description</label><textarea id="shareDescription" rows="4" placeholder="Présente ton site..."></textarea>
+    <label>Image / capture URL</label><input id="shareImage" placeholder="https://...">
+    <label>Lien du site</label><input id="shareUrl" placeholder="https://...">
+    <button class="primary-btn full" type="submit">Publier</button>
+  </form>
+  <div>
+    <div class="community-grid" id="communityGrid"></div>
+  </div>
 </section></main>
   <footer class="footer">
   <div>

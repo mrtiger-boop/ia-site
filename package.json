@@ -1,16 +1,16 @@
 {
-  "name": "siteo-v5-multipage-saas",
+  "name": "siteo-v8-complet",
   "version": "1.0.0",
   "type": "module",
   "scripts": {
     "start": "node server.js"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.110.0",
+    "@supabase/supabase-js": "^2.47.10",
     "cors": "^2.8.5",
-    "dotenv": "^16.4.0",
-    "express": "^4.21.0",
-    "stripe": "^22.3.0"
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "stripe": "^17.4.0"
   },
   "license": "UNLICENSED"
 }

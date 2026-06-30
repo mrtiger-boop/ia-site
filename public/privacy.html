@@ -1,102 +1,112 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confidentialité - Siteo</title>
+  <meta name="description" content="Politique de confidentialité de Siteo, données, comptes et paiements.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://siteo.studio/privacy">
   <link rel="icon" type="image/png" href="/favicon.png">
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Siteo — Confidentialité</title>
-  <meta name="description" content="Siteo génère des sites web avec IA et exporte des fichiers HTML CSS JS prêts à utiliser." />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="apple-touch-icon" href="/favicon.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta property="og:title" content="Confidentialité - Siteo">
+  <meta property="og:description" content="Politique de confidentialité de Siteo, données, comptes et paiements.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://siteo.studio/privacy">
+  <meta property="og:image" content="https://siteo.studio/favicon.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-  <div class="ambient-bg"><span class="orb orb-a"></span><span class="orb orb-b"></span><span class="orb orb-c"></span><div class="grid-glow"></div></div>
+  <div class="bg-orbs"><span></span><span></span><span></span></div>
+  <div id="leafLayer" class="leaf-layer"></div>
   <header class="navbar">
-  <a class="brand" href="index.html">
-    <div class="logo-mark"><span>S</span><i></i></div>
-    <div><h1>Siteo</h1><p>AI Website Studio</p></div>
+  <a class="brand" href="/" aria-label="Siteo Accueil">
+    <span class="brand-logo">S</span>
+    <span><strong>Siteo</strong><small>AI Website Studio</small></span>
   </a>
-
   <button class="mobile-menu" id="mobileMenuBtn">☰</button>
-
   <nav class="nav-links" id="navLinks">
-    <a href="Accueil">Accueil</a>
-    <a href="generate">Générer</a>
-    <a href="dashboard">Dashboard</a>
-    <a href="pricing">Offres</a>
-    <a href="help">Aide</a>
-    <a href="privacy">Confidentialité</a>
+    <a href="/">Accueil</a>
+    <a href="/generate">Générer</a>
+    <a href="/community">Galerie</a>
+    <a href="/shop">Boutique</a>
+    <a href="/dashboard">Profil</a>
+    <a href="/help">Aide</a>
   </nav>
-
-  <div class="account-area">
-    <button class="small-btn ghost" id="openLoginBtn">Connexion</button>
-    <button class="small-btn ghost" id="openSignupBtn">Inscription</button>
-    <button class="small-btn pro-btn" id="upgradeBtn">Passer Pro</button>
-    <button class="small-btn ghost hidden" id="logoutBtn">Déconnexion</button>
+  <div class="account-actions">
+    <button class="ghost-btn" id="openLoginBtn">Connexion</button>
+    <button class="primary-btn small" id="openSignupBtn">Inscription</button>
+    <button class="ghost-btn hidden" id="logoutBtn">Déconnexion</button>
   </div>
 </header>
-  <main><section class="section-title reveal"><span>Confidentialité</span><h2>Données, crédits et paiement.</h2></section>
+  <main><section class="page-hero reveal">
+  <span class="pill">Confidentialité</span>
+  <h1>Données et paiements.</h1>
+  <p>Siteo utilise Supabase pour les comptes et Stripe pour les paiements.</p>
+</section>
 <section class="legal-card reveal">
-  <h3>Données de compte</h3><p>Siteo utilise Supabase pour gérer l'inscription, la connexion, l'email de confirmation et les crédits.</p>
-  <h3>Crédits</h3><p>Chaque nouveau profil reçoit 100 crédits. Les crédits sont stockés dans la table Supabase <code>profiles</code>.</p>
-  <h3>Boutique crédits</h3><p>Les packs crédits passent par Stripe. Pour l'ajout automatique après paiement, il faudra ajouter un webhook sécurisé.</p>
-  <h3>Paiement Pro</h3><p>Le paiement Pro passe par Stripe. Siteo ne stocke pas les coordonnées bancaires.</p>
-  <h3>Annulation</h3><p>L'annulation doit se faire via le portail client Stripe. L'accès Pro reste actif jusqu'à la fin de la période payée. L'essai gratuit dure 7 jours.</p>
-</section><div class="hidden">
-  <strong id="creditCount"></strong><strong id="accountStatus"></strong><strong id="planStatus"></strong>
-  <strong id="dashCredits"></strong><strong id="dashEmail"></strong><strong id="dashPlan"></strong><strong id="dashUsername"></strong><strong id="dashVerified"></strong><strong id="dashCreated"></strong>
-  <section id="userNotice"></section><div id="historyList"></div><button id="clearHistoryBtn"></button>
-  <form id="templateForm"></form><pre id="resultText"></pre><button id="copyBtn"></button><button id="downloadBtn"></button><button id="resetBtn"></button>
-  <button id="freeBtn"></button><button id="proBtn"></button><button id="cancelSubBtn"></button><button id="buy100Btn"></button><button id="buy1000Btn"></button>
-</div></main>
-  <footer class="site-footer">
-  <div><div class="footer-logo"><span>S</span> Siteo</div><p>Transforme une idée en site web complet.</p></div>
-  <div><a href="generate.html">Créer</a><a href="pricing.html">Offres</a><a href="help.html">Aide</a><a href="privacy.html">Confidentialité</a></div>
+  <h2>Données utilisateur</h2>
+  <p>Les comptes, crédits et plans sont gérés via Supabase.</p>
+  <h2>Paiements</h2>
+  <p>Stripe traite les paiements. Siteo ne stocke pas les informations bancaires.</p>
+  <h2>Crédits</h2>
+  <p>Les crédits sont ajoutés après paiement validé via webhook Stripe.</p>
+</section></main>
+  <footer class="footer">
+  <div>
+    <div class="footer-brand"><span class="brand-logo">S</span><strong>Siteo</strong></div>
+    <p>Crée, améliore, exporte et partage des sites web avec l'intelligence artificielle.</p>
+  </div>
+  <div class="footer-grid">
+    <a href="/generate">Générer</a>
+    <a href="/community">Galerie</a>
+    <a href="/shop">Boutique</a>
+    <a href="/privacy">Confidentialité</a>
+  </div>
 </footer>
-
-<div class="modal hidden" id="signupModal">
-  <div class="modal-card auth-card">
+  <div class="modal hidden" id="signupModal">
+  <div class="modal-card">
     <button class="close-btn" data-close-modal="signupModal">×</button>
-    <div class="modal-logo"><span>S</span></div>
-    <h2>Inscription</h2>
-    <p>Crée ton compte. Tu devras confirmer ton email avant de générer.</p>
-    <label for="signupUsername">Pseudo</label><input id="signupUsername" type="text" placeholder="Ex : Créateur Pro" />
-    <label for="signupEmail">Email</label><input id="signupEmail" type="email" placeholder="exemple@email.com" />
-    <label for="signupPassword">Mot de passe</label><input id="signupPassword" type="password" placeholder="Minimum 6 caractères" />
-    <button class="btn primary full" id="signupBtn">Créer mon compte</button>
-    <button class="btn secondary full" id="switchToLoginBtn">J'ai déjà un compte</button>
-    <p class="small-note">100 crédits seront ajoutés au profil après création.</p>
+    <div class="brand-logo big">S</div>
+    <h2>Créer un compte</h2>
+    <p>100 crédits offerts pour tester Siteo.</p>
+    <label>Pseudo</label><input id="signupUsername" placeholder="Ton pseudo">
+    <label>Email</label><input id="signupEmail" type="email" placeholder="email@exemple.com">
+    <label>Mot de passe</label><input id="signupPassword" type="password" placeholder="Minimum 6 caractères">
+    <button class="primary-btn full" id="signupBtn">Créer mon compte</button>
+    <button class="ghost-btn full" id="switchToLoginBtn">J'ai déjà un compte</button>
   </div>
 </div>
 
 <div class="modal hidden" id="loginModal">
-  <div class="modal-card auth-card">
+  <div class="modal-card">
     <button class="close-btn" data-close-modal="loginModal">×</button>
-    <div class="modal-logo"><span>S</span></div>
+    <div class="brand-logo big">S</div>
     <h2>Connexion</h2>
-    <p>Connecte-toi avec ton email et ton mot de passe.</p>
-    <label for="loginEmail">Email</label><input id="loginEmail" type="email" placeholder="exemple@email.com" />
-    <label for="loginPassword">Mot de passe</label><input id="loginPassword" type="password" placeholder="Ton mot de passe" />
-    <button class="btn primary full" id="loginBtn">Me connecter</button>
-    <button class="btn secondary full" id="openResetBtn">Mot de passe oublié</button>
-    <button class="btn tertiary full" id="switchToSignupBtn">Créer un compte</button>
+    <p>Connecte-toi pour générer, partager et acheter des crédits.</p>
+    <label>Email</label><input id="loginEmail" type="email" placeholder="email@exemple.com">
+    <label>Mot de passe</label><input id="loginPassword" type="password" placeholder="Ton mot de passe">
+    <button class="primary-btn full" id="loginBtn">Me connecter</button>
+    <button class="ghost-btn full" id="openResetBtn">Mot de passe oublié</button>
+    <button class="text-btn full" id="switchToSignupBtn">Créer un compte</button>
   </div>
 </div>
 
 <div class="modal hidden" id="resetModal">
-  <div class="modal-card auth-card">
+  <div class="modal-card">
     <button class="close-btn" data-close-modal="resetModal">×</button>
-    <div class="modal-logo"><span>S</span></div>
-    <h2>Réinitialiser le mot de passe</h2>
-    <p>Entre ton email. Supabase t'enverra un lien de réinitialisation.</p>
-    <label for="resetEmail">Email</label><input id="resetEmail" type="email" placeholder="exemple@email.com" />
-    <button class="btn primary full" id="resetPasswordBtn">Envoyer le lien</button>
+    <h2>Réinitialisation</h2>
+    <p>Entre ton email pour recevoir un lien.</p>
+    <label>Email</label><input id="resetEmail" type="email" placeholder="email@exemple.com">
+    <button class="primary-btn full" id="resetPasswordBtn">Envoyer le lien</button>
   </div>
 </div>
 
 <div class="toast" id="toast"></div>
-
 <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="script.js"></script>
+<script src="/script.js"></script>
 </body>
 </html>

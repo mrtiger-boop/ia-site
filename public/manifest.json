@@ -1,0 +1,15 @@
+{
+  "name": "Siteo",
+  "short_name": "Siteo",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050712",
+  "theme_color": "#55b7ff",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
