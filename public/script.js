@@ -1,9 +1,9 @@
 const SUPABASE_URL = "https://azgahpygwlrrmozbjrqo.supabase.co";
 const SUPABASE_KEY = "sb_publishable_fVRUhodws3p_7UVjnODJwg_7UpsyJwQ";
-const STRIPE_SUB_URL = "https://buy.stripe.com/3cIaEQ5m3fCg6DLex897G00";
 const BILLING_PORTAL_URL = "TON_LIEN_PORTAIL_CLIENT_STRIPE_ICI";
-const STRIPE_CREDITS_100_URL = "TON_LIEN_STRIPE_100_CREDITS_ICI";
-const STRIPE_CREDITS_1000_URL = "TON_LIEN_STRIPE_1000_CREDITS_ICI";
+const STRIPE_SUB_URL = "https://buy.stripe.com/test_aFadRa4Uc1CTckq0kW4Ni02";
+const STRIPE_CREDITS_100_URL = "https://buy.stripe.com/test_eVq28s86o5T92JQ0kW4Ni01";
+const STRIPE_CREDITS_1000_URL = "https://buy.stripe.com/test_bJe14ogCUgxNbgm5Fg4Ni00";
 
 const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
