@@ -135,6 +135,11 @@ const pages = [
   "privacy"
 ];
 
+app.get("/google85eef80a332bd1ef.html", (req, res) => {
+  res.type("text/html");
+  res.send("google-site-verification: google85eef80a332bd1ef.html");
+});
+
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
