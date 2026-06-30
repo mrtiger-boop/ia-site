@@ -102,6 +102,7 @@ function dateFr(value) {
 function updateUI() {
   const isPro = data.plan === "pro";
   const username = data.profile?.username || data.user?.user_metadata?.username || data.user?.email || "Invité";
+  data.credits = Number(data.credits || 100);
   const creditsText = isPro ? "∞" : `${data.credits} crédits`;
   if (els.creditCount) els.creditCount.textContent = creditsText;
   if (els.accountStatus) els.accountStatus.textContent = username;
