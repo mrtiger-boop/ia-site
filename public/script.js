@@ -65,11 +65,25 @@ async function ensureProfile() {
 
 async function loadProfile() {
   if (!data.user) return;
-  const { data: profile, error } = await supabaseClient.from("profiles").select("*").eq("id", data.user.id).single();
-  if (error) { console.error("Erreur chargement profile :", error); return; }
+
+  const { data: profile, error } = await supabaseClient
+    .from("profiles")
+    .select("*")
+    .eq("id", data.user.id)
+    .single();
+
+  if (error) {
+    console.error("Erreur chargement profile :", error);
+    return;
+  }
+
+  console.log("PROFILE :", profile);
+
   data.profile = profile;
   data.plan = profile.plan || "free";
-  data.credits = typeof profile.credits === "number" ? profile.credits : 100;
+  data.credits = Number(profile.credits || 100);
+
+  console.log("CREDITS :", data.credits);
 }
 
 async function updateProfileCredits(newCredits) {
