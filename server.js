@@ -172,17 +172,17 @@ app.post("/api/create-portal-session", async (req, res) => {
 
 async function callOpenRouter(messages) {
   const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-   method: "POST",
-   headers: {
-    Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
-    "Content-Type": "application/json",
-    "HTTP-Referer": PUBLIC_SITE_URL,
-    "X-Title": "Siteo"
-   },
-   body: JSON.stringify({
-    model: "openrouter/auto",
-    messages,
-    max_tokens: 2500
+    method: "POST",
+    headers: {
+     Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
+     "Content-Type": "application/json",
+     "HTTP-Referer": PUBLIC_SITE_URL,
+     "X-Title": "Siteo"
+    },
+    body: JSON.stringify({
+     model: "openrouter/auto",
+     messages,
+     max_tokens: 2500
    })
 });
 
