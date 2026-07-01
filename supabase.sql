@@ -1,5 +1,3 @@
--- Siteo V8 Supabase SQL
-
 create table if not exists profiles (
   id uuid primary key references auth.users(id) on delete cascade,
   username text,
@@ -17,17 +15,6 @@ drop policy if exists "Users can read own profile" on profiles;
 drop policy if exists "Users can update own profile" on profiles;
 drop policy if exists "Users can insert own profile" on profiles;
 
-create policy "Users can read own profile"
-on profiles for select to authenticated
-using (auth.uid() = id);
-
-create policy "Users can update own profile"
-on profiles for update to authenticated
-using (auth.uid() = id)
-with check (auth.uid() = id);
-
-create policy "Users can insert own profile"
-on profiles for insert to authenticated
-with check (auth.uid() = id);
-
-update profiles set credits = 100 where credits is null;
+create policy "Users can read own profile" on profiles for select to authenticated using (auth.uid() = id);
+create policy "Users can update own profile" on profiles for update to authenticated using (auth.uid() = id) with check (auth.uid() = id);
+create policy "Users can insert own profile" on profiles for insert to authenticated with check (auth.uid() = id);

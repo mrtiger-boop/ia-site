@@ -3,8 +3,8 @@
   "short_name": "Siteo",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#050712",
-  "theme_color": "#55b7ff",
+  "background_color": "#03040a",
+  "theme_color": "#3bbcff",
   "icons": [
     {
       "src": "/favicon.png",

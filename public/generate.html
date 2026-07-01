@@ -3,161 +3,152 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Générer un site - Siteo</title>
-  <meta name="description" content="Générez ou améliorez un site web avec l'intelligence artificielle de Siteo.">
+  <title>Studio IA - Siteo</title>
+  <meta name="description" content="Créez ou améliorez un site avec l'IA.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://siteo.studio/generate">
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="apple-touch-icon" href="/favicon.png">
   <link rel="manifest" href="/manifest.json">
-  <meta property="og:title" content="Générer un site - Siteo">
-  <meta property="og:description" content="Générez ou améliorez un site web avec l'intelligence artificielle de Siteo.">
+  <meta property="og:title" content="Studio IA - Siteo">
+  <meta property="og:description" content="Créez ou améliorez un site avec l'IA.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://siteo.studio/generate">
   <meta property="og:image" content="https://siteo.studio/favicon.png">
-  <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-  <div class="bg-orbs"><span></span><span></span><span></span></div>
+  <div class="ultimate-bg">
+    <div class="orb orb-a"></div>
+    <div class="orb orb-b"></div>
+    <div class="orb orb-c"></div>
+    <div class="noise"></div>
+  </div>
+  <canvas id="starsCanvas" class="stars"></canvas>
+  <div class="cursor-light" id="cursorGlow"></div>
   <div id="leafLayer" class="leaf-layer"></div>
-  <header class="navbar">
-  <a class="brand" href="/" aria-label="Siteo Accueil">
-    <span class="brand-logo">S</span>
+  <header class="siteo-nav">
+  <a class="siteo-brand" href="/">
+    <span class="siteo-logo">S</span>
     <span><strong>Siteo</strong><small>AI Website Studio</small></span>
   </a>
-  <button class="mobile-menu" id="mobileMenuBtn">☰</button>
-  <nav class="nav-links" id="navLinks">
+  <button class="siteo-menu" id="mobileMenuBtn">☰</button>
+  <nav class="siteo-links" id="navLinks">
     <a href="/">Accueil</a>
-    <a href="/generate">Générer</a>
+    <a href="/generate">Studio</a>
+    <a href="/templates">Templates</a>
+    <a href="/components">Composants</a>
+    <a href="/marketplace">Marketplace</a>
+    <a href="/academy">Academy</a>
+    <a href="/leaderboard">Top</a>
     <a href="/community">Galerie</a>
     <a href="/shop">Boutique</a>
     <a href="/dashboard">Profil</a>
-    <a href="/help">Aide</a>
   </nav>
-  <div class="account-actions">
-    <button class="ghost-btn" id="openLoginBtn">Connexion</button>
-    <button class="primary-btn small" id="openSignupBtn">Inscription</button>
-    <button class="ghost-btn hidden" id="logoutBtn">Déconnexion</button>
+  <div class="siteo-auth">
+    <button class="ui-btn ui-ghost small" id="openLoginBtn">Connexion</button>
+    <button class="ui-btn ui-primary small" id="openSignupBtn">Inscription</button>
+    <button class="ui-btn ui-ghost small hidden" id="logoutBtn">Déconnexion</button>
   </div>
 </header>
   <main><section class="page-hero reveal">
-  <span class="pill">Générateur</span>
-  <h1>Créer, prévisualiser, améliorer.</h1>
-  <p>Choisis un mode, écris ton besoin et laisse Siteo créer un site premium.</p>
+  <span class="pill">Studio IA</span>
+  <h1>Créer, améliorer, prévisualiser.</h1>
+  <p>Un espace complet pour générer des sites premium et récupérer le code.</p>
 </section>
 
-<section class="account-strip reveal">
-  <div><strong id="creditCount">0 crédits</strong><span>Crédits</span></div>
-  <div><strong id="planStatus">Free</strong><span>Plan</span></div>
-  <div><strong id="accountStatus">Invité</strong><span>Compte</span></div>
+<section class="studio-stats reveal">
+  <article><strong id="creditCount">0 crédits</strong><span>Crédits</span></article>
+  <article><strong id="planStatus">Free</strong><span>Plan</span></article>
+  <article><strong id="accountStatus">Invité</strong><span>Compte</span></article>
 </section>
 
-<section class="generator-shell">
-  <div class="generator-left reveal">
+<section class="studio-layout">
+  <aside class="studio-card reveal">
     <div class="tabs">
       <button class="tab active" data-generator-tab="create">Créer</button>
       <button class="tab" data-generator-tab="improve">Améliorer</button>
       <button class="tab" data-generator-tab="templates">Modèles</button>
     </div>
-
-    <form id="templateForm" class="form-card">
+    <form id="templateForm">
       <div class="generator-tab-panel active" id="createPanel">
-        <label>Nom du projet</label>
-        <input id="projectName" placeholder="Ex : Portfolio Roblox">
-        <label>Type de site</label>
-        <select id="siteType">
-          <option>Landing page</option><option>Portfolio</option><option>Boutique</option><option>SaaS</option><option>Restaurant</option><option>Immobilier</option><option>Blog</option><option>Discord</option><option>Roblox</option>
-        </select>
-        <label>Style visuel</label>
-        <select id="style">
-          <option>Ultra premium bleu/violet</option><option>Dark SaaS</option><option>Nature moderne</option><option>Gaming Roblox</option><option>Luxe blanc/or</option><option>Startup IA</option>
-        </select>
-        <label>Description</label>
-        <textarea id="description" rows="8" placeholder="Décris ton site, les sections, l'ambiance, les couleurs..."></textarea>
+        <label>Nom du projet</label><input id="projectName" placeholder="Ex : Restaurant Luxe">
+        <label>Type</label><select id="siteType"><option>Landing page</option><option>Portfolio</option><option>Boutique</option><option>SaaS</option><option>Restaurant</option><option>Immobilier</option><option>Blog</option><option>Discord</option><option>Roblox</option></select>
+        <label>Style</label><select id="style"><option>Ultra premium bleu/violet</option><option>Apple minimaliste</option><option>Dark SaaS</option><option>Nature moderne</option><option>Gaming Roblox</option><option>Luxe noir/or</option></select>
+        <label>Description</label><textarea id="description" rows="8" placeholder="Décris ton site, les sections, le style..."></textarea>
       </div>
-
       <div class="generator-tab-panel" id="improvePanel">
-        <label>Code du site existant</label>
-        <textarea id="existingSiteCode" rows="10" placeholder="Colle ici ton HTML/CSS/JS existant..."></textarea>
-        <label>Ce que tu veux améliorer</label>
-        <textarea id="improvePrompt" rows="6" placeholder="Ex : rends-le plus premium, ajoute une boutique, transforme en style Apple..."></textarea>
+        <label>Site existant</label><textarea id="existingSiteCode" rows="10" placeholder="Colle ici ton HTML/CSS/JS existant..."></textarea>
+        <label>Modification</label><textarea id="improvePrompt" rows="6" placeholder="Ex : rends-le plus Apple, ajoute une boutique..."></textarea>
       </div>
-
       <div class="generator-tab-panel" id="templatesPanel">
         <div class="template-grid" id="templateGrid">
-          <button type="button" data-template="Crée un site premium pour un restaurant moderne avec menu, galerie, réservation et avis clients.">🍽️ Restaurant</button>
-          <button type="button" data-template="Crée un portfolio développeur Roblox avec projets, compétences, services et contact.">🎮 Roblox</button>
-          <button type="button" data-template="Crée une landing page SaaS IA avec pricing, dashboard fictif, FAQ et CTA.">🤖 SaaS IA</button>
-          <button type="button" data-template="Crée un site immobilier premium avec biens, estimation, témoignages et contact.">🏠 Immobilier</button>
-          <button type="button" data-template="Crée une boutique en ligne premium avec produits, panier fictif, avis et FAQ.">🛒 Boutique</button>
-          <button type="button" data-template="Crée un site Discord communauté avec règles, rôles, événements et invitation.">💬 Discord</button>
+          <button type="button" data-template="Créer un site premium pour un restaurant luxe avec menu, réservation, galerie, avis clients et footer complet.">🍽️ Restaurant</button>
+          <button type="button" data-template="Créer une landing page SaaS IA premium avec hero spectaculaire, dashboard fictif, pricing, FAQ et CTA.">🤖 SaaS IA</button>
+          <button type="button" data-template="Créer un portfolio Roblox premium avec projets, services, tarifs et contact.">🎮 Roblox</button>
+          <button type="button" data-template="Créer une boutique moderne avec produits, panier fictif, badges promo et avis clients.">🛒 Boutique</button>
         </div>
       </div>
-
       <div class="action-row">
-        <button class="primary-btn full" type="submit">Générer / Améliorer</button>
-        <button class="ghost-btn full" id="downloadBtn" type="button">Télécharger ZIP</button>
+        <button class="ui-btn ui-primary full" type="submit">Générer</button>
+        <button class="ui-btn ui-ghost full" id="downloadBtn" type="button">Télécharger ZIP</button>
       </div>
     </form>
-  </div>
-
-  <div class="generator-right reveal">
-    <div class="preview-toolbar">
-      <span>Aperçu du site</span>
-      <button id="copyBtn">Copier code</button>
-    </div>
-    <iframe id="sitePreview" title="Aperçu Siteo"></iframe>
+  </aside>
+  <section class="preview-card reveal">
+    <div class="preview-top"><div><strong>Aperçu du site</strong><small>Modèle généré</small></div><div><button class="ui-btn ui-ghost small" id="copyBtn">Copier</button><button class="ui-btn ui-ghost small" id="saveProjectBtn">Sauver</button></div></div>
+    <iframe id="sitePreview"></iframe>
     <pre id="resultText">Le code généré apparaîtra ici.</pre>
-  </div>
+  </section>
 </section></main>
-  <footer class="footer">
+  <footer class="siteo-footer">
   <div>
-    <div class="footer-brand"><span class="brand-logo">S</span><strong>Siteo</strong></div>
-    <p>Crée, améliore, exporte et partage des sites web avec l'intelligence artificielle.</p>
+    <div class="footer-brand"><span class="siteo-logo">S</span><strong>Siteo</strong></div>
+    <p>Créer, améliorer, exporter et partager des sites web avec l'IA.</p>
   </div>
-  <div class="footer-grid">
-    <a href="/generate">Générer</a>
-    <a href="/community">Galerie</a>
-    <a href="/shop">Boutique</a>
+  <div class="footer-links">
+    <a href="/generate">Studio</a>
+    <a href="/templates">Templates</a>
+    <a href="/components">Composants</a>
+    <a href="/marketplace">Marketplace</a>
     <a href="/privacy">Confidentialité</a>
   </div>
 </footer>
   <div class="modal hidden" id="signupModal">
   <div class="modal-card">
-    <button class="close-btn" data-close-modal="signupModal">×</button>
-    <div class="brand-logo big">S</div>
+    <button class="modal-close" data-close-modal="signupModal">×</button>
+    <span class="siteo-logo big">S</span>
     <h2>Créer un compte</h2>
-    <p>100 crédits offerts pour tester Siteo.</p>
+    <p>100 crédits gratuits pour découvrir Siteo.</p>
     <label>Pseudo</label><input id="signupUsername" placeholder="Ton pseudo">
     <label>Email</label><input id="signupEmail" type="email" placeholder="email@exemple.com">
     <label>Mot de passe</label><input id="signupPassword" type="password" placeholder="Minimum 6 caractères">
-    <button class="primary-btn full" id="signupBtn">Créer mon compte</button>
-    <button class="ghost-btn full" id="switchToLoginBtn">J'ai déjà un compte</button>
+    <button class="ui-btn ui-primary full" id="signupBtn">Créer mon compte</button>
+    <button class="ui-btn ui-ghost full" id="switchToLoginBtn">J'ai déjà un compte</button>
   </div>
 </div>
 
 <div class="modal hidden" id="loginModal">
   <div class="modal-card">
-    <button class="close-btn" data-close-modal="loginModal">×</button>
-    <div class="brand-logo big">S</div>
+    <button class="modal-close" data-close-modal="loginModal">×</button>
+    <span class="siteo-logo big">S</span>
     <h2>Connexion</h2>
-    <p>Connecte-toi pour générer, partager et acheter des crédits.</p>
+    <p>Retrouve tes crédits et tes créations.</p>
     <label>Email</label><input id="loginEmail" type="email" placeholder="email@exemple.com">
     <label>Mot de passe</label><input id="loginPassword" type="password" placeholder="Ton mot de passe">
-    <button class="primary-btn full" id="loginBtn">Me connecter</button>
-    <button class="ghost-btn full" id="openResetBtn">Mot de passe oublié</button>
-    <button class="text-btn full" id="switchToSignupBtn">Créer un compte</button>
+    <button class="ui-btn ui-primary full" id="loginBtn">Me connecter</button>
+    <button class="ui-btn ui-ghost full" id="openResetBtn">Mot de passe oublié</button>
+    <button class="ui-btn ui-text full" id="switchToSignupBtn">Créer un compte</button>
   </div>
 </div>
 
 <div class="modal hidden" id="resetModal">
   <div class="modal-card">
-    <button class="close-btn" data-close-modal="resetModal">×</button>
-    <h2>Réinitialisation</h2>
+    <button class="modal-close" data-close-modal="resetModal">×</button>
+    <h2>Réinitialiser</h2>
     <p>Entre ton email pour recevoir un lien.</p>
     <label>Email</label><input id="resetEmail" type="email" placeholder="email@exemple.com">
-    <button class="primary-btn full" id="resetPasswordBtn">Envoyer le lien</button>
+    <button class="ui-btn ui-primary full" id="resetPasswordBtn">Envoyer</button>
   </div>
 </div>
 

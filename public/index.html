@@ -3,172 +3,160 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Siteo - Générateur de sites web par IA</title>
-  <meta name="description" content="Créez des sites web professionnels avec l'IA, exportez en HTML CSS JS et partagez vos créations.">
+  <title>Siteo V12 - Studio IA complet</title>
+  <meta name="description" content="Studio IA complet pour créer des sites web premium.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://siteo.studio/">
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="apple-touch-icon" href="/favicon.png">
   <link rel="manifest" href="/manifest.json">
-  <meta property="og:title" content="Siteo - Générateur de sites web par IA">
-  <meta property="og:description" content="Créez des sites web professionnels avec l'IA, exportez en HTML CSS JS et partagez vos créations.">
+  <meta property="og:title" content="Siteo V12 - Studio IA complet">
+  <meta property="og:description" content="Studio IA complet pour créer des sites web premium.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://siteo.studio/">
   <meta property="og:image" content="https://siteo.studio/favicon.png">
-  <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-  <div class="bg-orbs"><span></span><span></span><span></span></div>
+  <div class="ultimate-bg">
+    <div class="orb orb-a"></div>
+    <div class="orb orb-b"></div>
+    <div class="orb orb-c"></div>
+    <div class="noise"></div>
+  </div>
+  <canvas id="starsCanvas" class="stars"></canvas>
+  <div class="cursor-light" id="cursorGlow"></div>
   <div id="leafLayer" class="leaf-layer"></div>
-  <header class="navbar">
-  <a class="brand" href="/" aria-label="Siteo Accueil">
-    <span class="brand-logo">S</span>
+  <header class="siteo-nav">
+  <a class="siteo-brand" href="/">
+    <span class="siteo-logo">S</span>
     <span><strong>Siteo</strong><small>AI Website Studio</small></span>
   </a>
-  <button class="mobile-menu" id="mobileMenuBtn">☰</button>
-  <nav class="nav-links" id="navLinks">
+  <button class="siteo-menu" id="mobileMenuBtn">☰</button>
+  <nav class="siteo-links" id="navLinks">
     <a href="/">Accueil</a>
-    <a href="/generate">Générer</a>
+    <a href="/generate">Studio</a>
+    <a href="/templates">Templates</a>
+    <a href="/components">Composants</a>
+    <a href="/marketplace">Marketplace</a>
+    <a href="/academy">Academy</a>
+    <a href="/leaderboard">Top</a>
     <a href="/community">Galerie</a>
     <a href="/shop">Boutique</a>
     <a href="/dashboard">Profil</a>
-    <a href="/help">Aide</a>
   </nav>
-  <div class="account-actions">
-    <button class="ghost-btn" id="openLoginBtn">Connexion</button>
-    <button class="primary-btn small" id="openSignupBtn">Inscription</button>
-    <button class="ghost-btn hidden" id="logoutBtn">Déconnexion</button>
+  <div class="siteo-auth">
+    <button class="ui-btn ui-ghost small" id="openLoginBtn">Connexion</button>
+    <button class="ui-btn ui-primary small" id="openSignupBtn">Inscription</button>
+    <button class="ui-btn ui-ghost small hidden" id="logoutBtn">Déconnexion</button>
   </div>
 </header>
-  <main><section class="hero">
-  <div class="hero-content reveal">
-    <span class="pill">✨ Siteo.studio • Générateur IA premium</span>
-    <h1>Crée un site web complet en quelques secondes.</h1>
-    <p>Siteo transforme une idée en site HTML, CSS et JavaScript prêt à télécharger. Gère tes crédits, passe Pro, partage tes créations et améliore tes sites avec l'IA.</p>
+  <main><section class="hero-ultimate">
+  <div class="hero-copy reveal">
+    <span class="pill">🚀 Siteo V12 • Studio IA complet</span>
+    <h1>Crée des sites web qui donnent envie de cliquer.</h1>
+    <p>Un studio IA complet pour générer, améliorer, prévisualiser, exporter, partager, apprendre et construire des sites premium avec une vraie profondeur produit.</p>
     <div class="hero-actions">
-      <a class="primary-btn" href="/generate">Commencer gratuitement</a>
-      <a class="ghost-btn" href="/community">Voir la galerie</a>
-      <button class="leaf-toggle" id="leafToggle">🍃 Feuilles OFF</button>
+      <a class="ui-btn ui-primary huge" href="/generate">Lancer le Studio</a>
+      <a class="ui-btn ui-ghost huge" href="/templates">Explorer les templates</a>
+      <button class="ui-btn ui-nature huge" id="leafToggle">🍃 Feuilles OFF</button>
     </div>
-    <div class="trust-row">
-      <span>100 crédits offerts</span><span>Export ZIP</span><span>Pro 4,99€/mois</span>
+    <div class="proof">
+      <span>100 crédits offerts</span><span>Pro 4,99€/mois</span><span>120 templates</span><span>Marketplace</span><span>Academy</span>
     </div>
   </div>
-  <div class="hero-visual reveal">
-    <div class="browser-card">
-      <div class="browser-top"><i></i><i></i><i></i><span>siteo.studio/generate</span></div>
-      <div class="ai-panel">
-        <div class="ai-glow"></div>
-        <div class="mini-title"></div>
-        <div class="mini-line"></div>
-        <div class="mini-line short"></div>
-        <div class="mini-cards"><b></b><b></b><b></b></div>
-      </div>
+  <div class="command-center reveal">
+    <div class="command-top"><i></i><i></i><i></i><strong>Siteo Command Center</strong></div>
+    <div class="command-grid">
+      <article><small>Prompt</small><b>Créer un SaaS IA premium</b></article>
+      <article><small>Mode</small><b>Amélioration</b></article>
+      <article><small>Export</small><b>ZIP prêt</b></article>
+      <article><small>Score</small><b>98/100</b></article>
     </div>
-    <div class="floating-card c1">⚡ Aperçu en direct</div>
-    <div class="floating-card c2">👑 Pro illimité</div>
-    <div class="floating-card c3">💬 Communauté</div>
+    <div class="command-screen">
+      <div class="screen-title"></div>
+      <div class="screen-line"></div>
+      <div class="screen-line short"></div>
+      <div class="screen-boxes"><span></span><span></span><span></span></div>
+    </div>
   </div>
 </section>
 
-<section class="stats reveal">
-  <article><strong>10 sec</strong><span>pour générer une base</span></article>
-  <article><strong>3 fichiers</strong><span>HTML CSS JS exportés</span></article>
-  <article><strong>100</strong><span>crédits gratuits</span></article>
-  <article><strong>4,99€</strong><span>Pro mensuel</span></article>
+<section class="launchpad reveal">
+  <a href="/generate"><b>⚡</b><strong>Studio IA</strong><span>Créer / améliorer</span></a>
+  <a href="/templates"><b>🎨</b><strong>Templates</strong><span>120 prompts prêts</span></a>
+  <a href="/components"><b>🧩</b><strong>Composants</strong><span>Blocs premium</span></a>
+  <a href="/marketplace"><b>🛍️</b><strong>Marketplace</strong><span>Vitrine templates</span></a>
+  <a href="/academy"><b>🎓</b><strong>Academy</strong><span>Apprendre vite</span></a>
+  <a href="/leaderboard"><b>🏆</b><strong>Top créateurs</strong><span>Classement</span></a>
 </section>
 
-<section class="section-head reveal">
-  <span>Fonctionnalités</span>
-  <h2>Un atelier complet, pas juste un générateur.</h2>
+<section class="section-title reveal">
+  <span>Écosystème</span>
+  <h2>Plus qu’un générateur, un vrai atelier.</h2>
 </section>
 
-<section class="feature-grid">
-  <article class="feature reveal"><b>01</b><h3>Créer un site</h3><p>Décris ton projet et Siteo génère une landing page ou un site complet.</p></article>
-  <article class="feature reveal"><b>02</b><h3>Améliorer un site</h3><p>Colle un code existant et demande à l'IA de le moderniser ou de le transformer.</p></article>
-  <article class="feature reveal"><b>03</b><h3>Aperçu instantané</h3><p>Visualise le résultat dans un cadre intégré avant de télécharger le ZIP.</p></article>
-  <article class="feature reveal"><b>04</b><h3>Galerie publique</h3><p>Partage tes créations, reçois des likes et des commentaires.</p></article>
-  <article class="feature reveal"><b>05</b><h3>Crédits & Pro</h3><p>Teste gratuitement puis achète des crédits ou passe en illimité.</p></article>
-  <article class="feature reveal"><b>06</b><h3>SEO intégré</h3><p>Les pages de Siteo sont préparées pour Google, Open Graph et réseaux sociaux.</p></article>
+<section class="mega-grid">
+  <article class="mega-card reveal"><b>🤖</b><h3>Génération IA</h3><p>Décris ton idée, Siteo crée le site complet.</p></article>
+  <article class="mega-card reveal"><b>🛠️</b><h3>Amélioration IA</h3><p>Transforme un site existant avec un prompt simple.</p></article>
+  <article class="mega-card reveal"><b>👀</b><h3>Aperçu direct</h3><p>Regarde le rendu avant de télécharger le ZIP.</p></article>
+  <article class="mega-card reveal"><b>🎨</b><h3>Templates</h3><p>120 prompts prêts pour lancer vite.</p></article>
+  <article class="mega-card reveal"><b>🧩</b><h3>Composants</h3><p>Hero, pricing, FAQ, dashboard, galerie...</p></article>
+  <article class="mega-card reveal"><b>🍃</b><h3>Effets visuels</h3><p>Feuilles ON/OFF, étoiles, halos, curseur lumineux.</p></article>
 </section>
 
-<section class="showcase reveal">
-  <div>
-    <span class="pill">Templates IA</span>
-    <h2>Des modèles prêts pour lancer plus vite.</h2>
-    <p>Portfolio, restaurant, SaaS, immobilier, Roblox, Discord, boutique et plus. Clique sur un modèle, le prompt se prépare automatiquement.</p>
-    <a class="primary-btn" href="/generate">Tester les modèles</a>
-  </div>
-  <div class="template-cloud">
-    <span>Restaurant</span><span>Portfolio</span><span>Roblox</span><span>SaaS</span><span>Boutique</span><span>Immobilier</span><span>Discord</span><span>Blog</span>
-  </div>
-</section>
-
-<section class="section-head reveal">
-  <span>Avis</span>
-  <h2>Un outil pensé pour créer vite.</h2>
-</section>
-<section class="reviews">
-  <article class="review reveal"><p>“J’ai généré une landing page propre en quelques minutes. L’export ZIP est super pratique.”</p><strong>Alex — Créateur</strong></article>
-  <article class="review reveal"><p>“Le système de crédits rend l’outil simple à tester, et le Pro est accessible.”</p><strong>Maya — Freelance</strong></article>
-  <article class="review reveal"><p>“La galerie donne envie de partager ses créations et de s’inspirer des autres.”</p><strong>Noah — Designer</strong></article>
-</section>
-
-<section class="faq reveal">
-  <div class="section-head compact"><span>FAQ</span><h2>Questions fréquentes</h2></div>
-  <details open><summary>Comment fonctionne Siteo ?</summary><p>Tu écris ton idée, l'IA crée le HTML, CSS et JavaScript, puis tu peux télécharger le ZIP.</p></details>
-  <details><summary>Les crédits servent à quoi ?</summary><p>Chaque génération gratuite coûte 10 crédits. Les comptes Pro ont des générations illimitées.</p></details>
-  <details><summary>Est-ce que je peux améliorer un site existant ?</summary><p>Oui, colle ton code existant dans l'onglet “Améliorer” et décris la modification souhaitée.</p></details>
-  <details><summary>Comment partager mon site ?</summary><p>Depuis la page Galerie, tu peux publier une image, un titre, une description et un lien.</p></details>
+<section class="asset-showcase reveal">
+  <div><span class="pill">Nouveaux assets</span><h2>Des visuels intégrés pour donner plus de matière au projet.</h2><p>La V12 garde tes fichiers et ajoute des assets SVG, des pages et des données templates.</p></div>
+  <img src="/assets/siteo-asset-7.svg" alt="Aperçu Siteo">
 </section></main>
-  <footer class="footer">
+  <footer class="siteo-footer">
   <div>
-    <div class="footer-brand"><span class="brand-logo">S</span><strong>Siteo</strong></div>
-    <p>Crée, améliore, exporte et partage des sites web avec l'intelligence artificielle.</p>
+    <div class="footer-brand"><span class="siteo-logo">S</span><strong>Siteo</strong></div>
+    <p>Créer, améliorer, exporter et partager des sites web avec l'IA.</p>
   </div>
-  <div class="footer-grid">
-    <a href="/generate">Générer</a>
-    <a href="/community">Galerie</a>
-    <a href="/shop">Boutique</a>
+  <div class="footer-links">
+    <a href="/generate">Studio</a>
+    <a href="/templates">Templates</a>
+    <a href="/components">Composants</a>
+    <a href="/marketplace">Marketplace</a>
     <a href="/privacy">Confidentialité</a>
   </div>
 </footer>
   <div class="modal hidden" id="signupModal">
   <div class="modal-card">
-    <button class="close-btn" data-close-modal="signupModal">×</button>
-    <div class="brand-logo big">S</div>
+    <button class="modal-close" data-close-modal="signupModal">×</button>
+    <span class="siteo-logo big">S</span>
     <h2>Créer un compte</h2>
-    <p>100 crédits offerts pour tester Siteo.</p>
+    <p>100 crédits gratuits pour découvrir Siteo.</p>
     <label>Pseudo</label><input id="signupUsername" placeholder="Ton pseudo">
     <label>Email</label><input id="signupEmail" type="email" placeholder="email@exemple.com">
     <label>Mot de passe</label><input id="signupPassword" type="password" placeholder="Minimum 6 caractères">
-    <button class="primary-btn full" id="signupBtn">Créer mon compte</button>
-    <button class="ghost-btn full" id="switchToLoginBtn">J'ai déjà un compte</button>
+    <button class="ui-btn ui-primary full" id="signupBtn">Créer mon compte</button>
+    <button class="ui-btn ui-ghost full" id="switchToLoginBtn">J'ai déjà un compte</button>
   </div>
 </div>
 
 <div class="modal hidden" id="loginModal">
   <div class="modal-card">
-    <button class="close-btn" data-close-modal="loginModal">×</button>
-    <div class="brand-logo big">S</div>
+    <button class="modal-close" data-close-modal="loginModal">×</button>
+    <span class="siteo-logo big">S</span>
     <h2>Connexion</h2>
-    <p>Connecte-toi pour générer, partager et acheter des crédits.</p>
+    <p>Retrouve tes crédits et tes créations.</p>
     <label>Email</label><input id="loginEmail" type="email" placeholder="email@exemple.com">
     <label>Mot de passe</label><input id="loginPassword" type="password" placeholder="Ton mot de passe">
-    <button class="primary-btn full" id="loginBtn">Me connecter</button>
-    <button class="ghost-btn full" id="openResetBtn">Mot de passe oublié</button>
-    <button class="text-btn full" id="switchToSignupBtn">Créer un compte</button>
+    <button class="ui-btn ui-primary full" id="loginBtn">Me connecter</button>
+    <button class="ui-btn ui-ghost full" id="openResetBtn">Mot de passe oublié</button>
+    <button class="ui-btn ui-text full" id="switchToSignupBtn">Créer un compte</button>
   </div>
 </div>
 
 <div class="modal hidden" id="resetModal">
   <div class="modal-card">
-    <button class="close-btn" data-close-modal="resetModal">×</button>
-    <h2>Réinitialisation</h2>
+    <button class="modal-close" data-close-modal="resetModal">×</button>
+    <h2>Réinitialiser</h2>
     <p>Entre ton email pour recevoir un lien.</p>
     <label>Email</label><input id="resetEmail" type="email" placeholder="email@exemple.com">
-    <button class="primary-btn full" id="resetPasswordBtn">Envoyer le lien</button>
+    <button class="ui-btn ui-primary full" id="resetPasswordBtn">Envoyer</button>
   </div>
 </div>
 

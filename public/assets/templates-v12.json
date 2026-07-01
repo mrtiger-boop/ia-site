@@ -1,0 +1,842 @@
+[
+  {
+    "id": 1,
+    "title": "Restaurant #1",
+    "category": "Restaurant",
+    "style": "Apple minimaliste",
+    "prompt": "Créer un site Restaurant en style Apple minimaliste, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 2,
+    "title": "Portfolio Roblox #2",
+    "category": "Portfolio Roblox",
+    "style": "dark startup",
+    "prompt": "Créer un site Portfolio Roblox en style dark startup, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 3,
+    "title": "Boutique #3",
+    "category": "Boutique",
+    "style": "nature moderne",
+    "prompt": "Créer un site Boutique en style nature moderne, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 4,
+    "title": "Immobilier #4",
+    "category": "Immobilier",
+    "style": "luxe noir/or",
+    "prompt": "Créer un site Immobilier en style luxe noir/or, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 5,
+    "title": "Discord #5",
+    "category": "Discord",
+    "style": "gaming clean",
+    "prompt": "Créer un site Discord en style gaming clean, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 6,
+    "title": "Association #6",
+    "category": "Association",
+    "style": "ultra premium bleu/violet",
+    "prompt": "Créer un site Association en style ultra premium bleu/violet, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 7,
+    "title": "Blog #7",
+    "category": "Blog",
+    "style": "Apple minimaliste",
+    "prompt": "Créer un site Blog en style Apple minimaliste, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 8,
+    "title": "Artiste #8",
+    "category": "Artiste",
+    "style": "dark startup",
+    "prompt": "Créer un site Artiste en style dark startup, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 9,
+    "title": "Coach #9",
+    "category": "Coach",
+    "style": "nature moderne",
+    "prompt": "Créer un site Coach en style nature moderne, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 10,
+    "title": "Garage #10",
+    "category": "Garage",
+    "style": "luxe noir/or",
+    "prompt": "Créer un site Garage en style luxe noir/or, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 11,
+    "title": "Salon beauté #11",
+    "category": "Salon beauté",
+    "style": "gaming clean",
+    "prompt": "Créer un site Salon beauté en style gaming clean, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 12,
+    "title": "SaaS IA #12",
+    "category": "SaaS IA",
+    "style": "ultra premium bleu/violet",
+    "prompt": "Créer un site SaaS IA en style ultra premium bleu/violet, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 13,
+    "title": "Restaurant #13",
+    "category": "Restaurant",
+    "style": "Apple minimaliste",
+    "prompt": "Créer un site Restaurant en style Apple minimaliste, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 14,
+    "title": "Portfolio Roblox #14",
+    "category": "Portfolio Roblox",
+    "style": "dark startup",
+    "prompt": "Créer un site Portfolio Roblox en style dark startup, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 15,
+    "title": "Boutique #15",
+    "category": "Boutique",
+    "style": "nature moderne",
+    "prompt": "Créer un site Boutique en style nature moderne, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 16,
+    "title": "Immobilier #16",
+    "category": "Immobilier",
+    "style": "luxe noir/or",
+    "prompt": "Créer un site Immobilier en style luxe noir/or, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 17,
+    "title": "Discord #17",
+    "category": "Discord",
+    "style": "gaming clean",
+    "prompt": "Créer un site Discord en style gaming clean, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 18,
+    "title": "Association #18",
+    "category": "Association",
+    "style": "ultra premium bleu/violet",
+    "prompt": "Créer un site Association en style ultra premium bleu/violet, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 19,
+    "title": "Blog #19",
+    "category": "Blog",
+    "style": "Apple minimaliste",
+    "prompt": "Créer un site Blog en style Apple minimaliste, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 20,
+    "title": "Artiste #20",
+    "category": "Artiste",
+    "style": "dark startup",
+    "prompt": "Créer un site Artiste en style dark startup, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 21,
+    "title": "Coach #21",
+    "category": "Coach",
+    "style": "nature moderne",
+    "prompt": "Créer un site Coach en style nature moderne, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 22,
+    "title": "Garage #22",
+    "category": "Garage",
+    "style": "luxe noir/or",
+    "prompt": "Créer un site Garage en style luxe noir/or, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 23,
+    "title": "Salon beauté #23",
+    "category": "Salon beauté",
+    "style": "gaming clean",
+    "prompt": "Créer un site Salon beauté en style gaming clean, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 24,
+    "title": "SaaS IA #24",
+    "category": "SaaS IA",
+    "style": "ultra premium bleu/violet",
+    "prompt": "Créer un site SaaS IA en style ultra premium bleu/violet, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 25,
+    "title": "Restaurant #25",
+    "category": "Restaurant",
+    "style": "Apple minimaliste",
+    "prompt": "Créer un site Restaurant en style Apple minimaliste, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 26,
+    "title": "Portfolio Roblox #26",
+    "category": "Portfolio Roblox",
+    "style": "dark startup",
+    "prompt": "Créer un site Portfolio Roblox en style dark startup, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 27,
+    "title": "Boutique #27",
+    "category": "Boutique",
+    "style": "nature moderne",
+    "prompt": "Créer un site Boutique en style nature moderne, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 28,
+    "title": "Immobilier #28",
+    "category": "Immobilier",
+    "style": "luxe noir/or",
+    "prompt": "Créer un site Immobilier en style luxe noir/or, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 29,
+    "title": "Discord #29",
+    "category": "Discord",
+    "style": "gaming clean",
+    "prompt": "Créer un site Discord en style gaming clean, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 30,
+    "title": "Association #30",
+    "category": "Association",
+    "style": "ultra premium bleu/violet",
+    "prompt": "Créer un site Association en style ultra premium bleu/violet, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 31,
+    "title": "Blog #31",
+    "category": "Blog",
+    "style": "Apple minimaliste",
+    "prompt": "Créer un site Blog en style Apple minimaliste, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 32,
+    "title": "Artiste #32",
+    "category": "Artiste",
+    "style": "dark startup",
+    "prompt": "Créer un site Artiste en style dark startup, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 33,
+    "title": "Coach #33",
+    "category": "Coach",
+    "style": "nature moderne",
+    "prompt": "Créer un site Coach en style nature moderne, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 34,
+    "title": "Garage #34",
+    "category": "Garage",
+    "style": "luxe noir/or",
+    "prompt": "Créer un site Garage en style luxe noir/or, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 35,
+    "title": "Salon beauté #35",
+    "category": "Salon beauté",
+    "style": "gaming clean",
+    "prompt": "Créer un site Salon beauté en style gaming clean, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 36,
+    "title": "SaaS IA #36",
+    "category": "SaaS IA",
+    "style": "ultra premium bleu/violet",
+    "prompt": "Créer un site SaaS IA en style ultra premium bleu/violet, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 37,
+    "title": "Restaurant #37",
+    "category": "Restaurant",
+    "style": "Apple minimaliste",
+    "prompt": "Créer un site Restaurant en style Apple minimaliste, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 38,
+    "title": "Portfolio Roblox #38",
+    "category": "Portfolio Roblox",
+    "style": "dark startup",
+    "prompt": "Créer un site Portfolio Roblox en style dark startup, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 39,
+    "title": "Boutique #39",
+    "category": "Boutique",
+    "style": "nature moderne",
+    "prompt": "Créer un site Boutique en style nature moderne, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 40,
+    "title": "Immobilier #40",
+    "category": "Immobilier",
+    "style": "luxe noir/or",
+    "prompt": "Créer un site Immobilier en style luxe noir/or, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 41,
+    "title": "Discord #41",
+    "category": "Discord",
+    "style": "gaming clean",
+    "prompt": "Créer un site Discord en style gaming clean, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 42,
+    "title": "Association #42",
+    "category": "Association",
+    "style": "ultra premium bleu/violet",
+    "prompt": "Créer un site Association en style ultra premium bleu/violet, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 43,
+    "title": "Blog #43",
+    "category": "Blog",
+    "style": "Apple minimaliste",
+    "prompt": "Créer un site Blog en style Apple minimaliste, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 44,
+    "title": "Artiste #44",
+    "category": "Artiste",
+    "style": "dark startup",
+    "prompt": "Créer un site Artiste en style dark startup, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 45,
+    "title": "Coach #45",
+    "category": "Coach",
+    "style": "nature moderne",
+    "prompt": "Créer un site Coach en style nature moderne, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 46,
+    "title": "Garage #46",
+    "category": "Garage",
+    "style": "luxe noir/or",
+    "prompt": "Créer un site Garage en style luxe noir/or, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 47,
+    "title": "Salon beauté #47",
+    "category": "Salon beauté",
+    "style": "gaming clean",
+    "prompt": "Créer un site Salon beauté en style gaming clean, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 48,
+    "title": "SaaS IA #48",
+    "category": "SaaS IA",
+    "style": "ultra premium bleu/violet",
+    "prompt": "Créer un site SaaS IA en style ultra premium bleu/violet, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 49,
+    "title": "Restaurant #49",
+    "category": "Restaurant",
+    "style": "Apple minimaliste",
+    "prompt": "Créer un site Restaurant en style Apple minimaliste, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 50,
+    "title": "Portfolio Roblox #50",
+    "category": "Portfolio Roblox",
+    "style": "dark startup",
+    "prompt": "Créer un site Portfolio Roblox en style dark startup, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 51,
+    "title": "Boutique #51",
+    "category": "Boutique",
+    "style": "nature moderne",
+    "prompt": "Créer un site Boutique en style nature moderne, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 52,
+    "title": "Immobilier #52",
+    "category": "Immobilier",
+    "style": "luxe noir/or",
+    "prompt": "Créer un site Immobilier en style luxe noir/or, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 53,
+    "title": "Discord #53",
+    "category": "Discord",
+    "style": "gaming clean",
+    "prompt": "Créer un site Discord en style gaming clean, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 54,
+    "title": "Association #54",
+    "category": "Association",
+    "style": "ultra premium bleu/violet",
+    "prompt": "Créer un site Association en style ultra premium bleu/violet, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 55,
+    "title": "Blog #55",
+    "category": "Blog",
+    "style": "Apple minimaliste",
+    "prompt": "Créer un site Blog en style Apple minimaliste, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 56,
+    "title": "Artiste #56",
+    "category": "Artiste",
+    "style": "dark startup",
+    "prompt": "Créer un site Artiste en style dark startup, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 57,
+    "title": "Coach #57",
+    "category": "Coach",
+    "style": "nature moderne",
+    "prompt": "Créer un site Coach en style nature moderne, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 58,
+    "title": "Garage #58",
+    "category": "Garage",
+    "style": "luxe noir/or",
+    "prompt": "Créer un site Garage en style luxe noir/or, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 59,
+    "title": "Salon beauté #59",
+    "category": "Salon beauté",
+    "style": "gaming clean",
+    "prompt": "Créer un site Salon beauté en style gaming clean, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 60,
+    "title": "SaaS IA #60",
+    "category": "SaaS IA",
+    "style": "ultra premium bleu/violet",
+    "prompt": "Créer un site SaaS IA en style ultra premium bleu/violet, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 61,
+    "title": "Restaurant #61",
+    "category": "Restaurant",
+    "style": "Apple minimaliste",
+    "prompt": "Créer un site Restaurant en style Apple minimaliste, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 62,
+    "title": "Portfolio Roblox #62",
+    "category": "Portfolio Roblox",
+    "style": "dark startup",
+    "prompt": "Créer un site Portfolio Roblox en style dark startup, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 63,
+    "title": "Boutique #63",
+    "category": "Boutique",
+    "style": "nature moderne",
+    "prompt": "Créer un site Boutique en style nature moderne, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 64,
+    "title": "Immobilier #64",
+    "category": "Immobilier",
+    "style": "luxe noir/or",
+    "prompt": "Créer un site Immobilier en style luxe noir/or, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 65,
+    "title": "Discord #65",
+    "category": "Discord",
+    "style": "gaming clean",
+    "prompt": "Créer un site Discord en style gaming clean, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 66,
+    "title": "Association #66",
+    "category": "Association",
+    "style": "ultra premium bleu/violet",
+    "prompt": "Créer un site Association en style ultra premium bleu/violet, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 67,
+    "title": "Blog #67",
+    "category": "Blog",
+    "style": "Apple minimaliste",
+    "prompt": "Créer un site Blog en style Apple minimaliste, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 68,
+    "title": "Artiste #68",
+    "category": "Artiste",
+    "style": "dark startup",
+    "prompt": "Créer un site Artiste en style dark startup, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 69,
+    "title": "Coach #69",
+    "category": "Coach",
+    "style": "nature moderne",
+    "prompt": "Créer un site Coach en style nature moderne, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 70,
+    "title": "Garage #70",
+    "category": "Garage",
+    "style": "luxe noir/or",
+    "prompt": "Créer un site Garage en style luxe noir/or, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 71,
+    "title": "Salon beauté #71",
+    "category": "Salon beauté",
+    "style": "gaming clean",
+    "prompt": "Créer un site Salon beauté en style gaming clean, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 72,
+    "title": "SaaS IA #72",
+    "category": "SaaS IA",
+    "style": "ultra premium bleu/violet",
+    "prompt": "Créer un site SaaS IA en style ultra premium bleu/violet, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 73,
+    "title": "Restaurant #73",
+    "category": "Restaurant",
+    "style": "Apple minimaliste",
+    "prompt": "Créer un site Restaurant en style Apple minimaliste, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 74,
+    "title": "Portfolio Roblox #74",
+    "category": "Portfolio Roblox",
+    "style": "dark startup",
+    "prompt": "Créer un site Portfolio Roblox en style dark startup, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 75,
+    "title": "Boutique #75",
+    "category": "Boutique",
+    "style": "nature moderne",
+    "prompt": "Créer un site Boutique en style nature moderne, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 76,
+    "title": "Immobilier #76",
+    "category": "Immobilier",
+    "style": "luxe noir/or",
+    "prompt": "Créer un site Immobilier en style luxe noir/or, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 77,
+    "title": "Discord #77",
+    "category": "Discord",
+    "style": "gaming clean",
+    "prompt": "Créer un site Discord en style gaming clean, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 78,
+    "title": "Association #78",
+    "category": "Association",
+    "style": "ultra premium bleu/violet",
+    "prompt": "Créer un site Association en style ultra premium bleu/violet, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 79,
+    "title": "Blog #79",
+    "category": "Blog",
+    "style": "Apple minimaliste",
+    "prompt": "Créer un site Blog en style Apple minimaliste, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 80,
+    "title": "Artiste #80",
+    "category": "Artiste",
+    "style": "dark startup",
+    "prompt": "Créer un site Artiste en style dark startup, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 81,
+    "title": "Coach #81",
+    "category": "Coach",
+    "style": "nature moderne",
+    "prompt": "Créer un site Coach en style nature moderne, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 82,
+    "title": "Garage #82",
+    "category": "Garage",
+    "style": "luxe noir/or",
+    "prompt": "Créer un site Garage en style luxe noir/or, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 83,
+    "title": "Salon beauté #83",
+    "category": "Salon beauté",
+    "style": "gaming clean",
+    "prompt": "Créer un site Salon beauté en style gaming clean, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 84,
+    "title": "SaaS IA #84",
+    "category": "SaaS IA",
+    "style": "ultra premium bleu/violet",
+    "prompt": "Créer un site SaaS IA en style ultra premium bleu/violet, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 85,
+    "title": "Restaurant #85",
+    "category": "Restaurant",
+    "style": "Apple minimaliste",
+    "prompt": "Créer un site Restaurant en style Apple minimaliste, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 86,
+    "title": "Portfolio Roblox #86",
+    "category": "Portfolio Roblox",
+    "style": "dark startup",
+    "prompt": "Créer un site Portfolio Roblox en style dark startup, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 87,
+    "title": "Boutique #87",
+    "category": "Boutique",
+    "style": "nature moderne",
+    "prompt": "Créer un site Boutique en style nature moderne, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 88,
+    "title": "Immobilier #88",
+    "category": "Immobilier",
+    "style": "luxe noir/or",
+    "prompt": "Créer un site Immobilier en style luxe noir/or, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 89,
+    "title": "Discord #89",
+    "category": "Discord",
+    "style": "gaming clean",
+    "prompt": "Créer un site Discord en style gaming clean, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 90,
+    "title": "Association #90",
+    "category": "Association",
+    "style": "ultra premium bleu/violet",
+    "prompt": "Créer un site Association en style ultra premium bleu/violet, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 91,
+    "title": "Blog #91",
+    "category": "Blog",
+    "style": "Apple minimaliste",
+    "prompt": "Créer un site Blog en style Apple minimaliste, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 92,
+    "title": "Artiste #92",
+    "category": "Artiste",
+    "style": "dark startup",
+    "prompt": "Créer un site Artiste en style dark startup, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 93,
+    "title": "Coach #93",
+    "category": "Coach",
+    "style": "nature moderne",
+    "prompt": "Créer un site Coach en style nature moderne, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 94,
+    "title": "Garage #94",
+    "category": "Garage",
+    "style": "luxe noir/or",
+    "prompt": "Créer un site Garage en style luxe noir/or, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 95,
+    "title": "Salon beauté #95",
+    "category": "Salon beauté",
+    "style": "gaming clean",
+    "prompt": "Créer un site Salon beauté en style gaming clean, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 96,
+    "title": "SaaS IA #96",
+    "category": "SaaS IA",
+    "style": "ultra premium bleu/violet",
+    "prompt": "Créer un site SaaS IA en style ultra premium bleu/violet, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 97,
+    "title": "Restaurant #97",
+    "category": "Restaurant",
+    "style": "Apple minimaliste",
+    "prompt": "Créer un site Restaurant en style Apple minimaliste, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 98,
+    "title": "Portfolio Roblox #98",
+    "category": "Portfolio Roblox",
+    "style": "dark startup",
+    "prompt": "Créer un site Portfolio Roblox en style dark startup, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 99,
+    "title": "Boutique #99",
+    "category": "Boutique",
+    "style": "nature moderne",
+    "prompt": "Créer un site Boutique en style nature moderne, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 100,
+    "title": "Immobilier #100",
+    "category": "Immobilier",
+    "style": "luxe noir/or",
+    "prompt": "Créer un site Immobilier en style luxe noir/or, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 101,
+    "title": "Discord #101",
+    "category": "Discord",
+    "style": "gaming clean",
+    "prompt": "Créer un site Discord en style gaming clean, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 102,
+    "title": "Association #102",
+    "category": "Association",
+    "style": "ultra premium bleu/violet",
+    "prompt": "Créer un site Association en style ultra premium bleu/violet, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 103,
+    "title": "Blog #103",
+    "category": "Blog",
+    "style": "Apple minimaliste",
+    "prompt": "Créer un site Blog en style Apple minimaliste, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 104,
+    "title": "Artiste #104",
+    "category": "Artiste",
+    "style": "dark startup",
+    "prompt": "Créer un site Artiste en style dark startup, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 105,
+    "title": "Coach #105",
+    "category": "Coach",
+    "style": "nature moderne",
+    "prompt": "Créer un site Coach en style nature moderne, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 106,
+    "title": "Garage #106",
+    "category": "Garage",
+    "style": "luxe noir/or",
+    "prompt": "Créer un site Garage en style luxe noir/or, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 107,
+    "title": "Salon beauté #107",
+    "category": "Salon beauté",
+    "style": "gaming clean",
+    "prompt": "Créer un site Salon beauté en style gaming clean, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 108,
+    "title": "SaaS IA #108",
+    "category": "SaaS IA",
+    "style": "ultra premium bleu/violet",
+    "prompt": "Créer un site SaaS IA en style ultra premium bleu/violet, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 109,
+    "title": "Restaurant #109",
+    "category": "Restaurant",
+    "style": "Apple minimaliste",
+    "prompt": "Créer un site Restaurant en style Apple minimaliste, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 110,
+    "title": "Portfolio Roblox #110",
+    "category": "Portfolio Roblox",
+    "style": "dark startup",
+    "prompt": "Créer un site Portfolio Roblox en style dark startup, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 111,
+    "title": "Boutique #111",
+    "category": "Boutique",
+    "style": "nature moderne",
+    "prompt": "Créer un site Boutique en style nature moderne, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 112,
+    "title": "Immobilier #112",
+    "category": "Immobilier",
+    "style": "luxe noir/or",
+    "prompt": "Créer un site Immobilier en style luxe noir/or, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 113,
+    "title": "Discord #113",
+    "category": "Discord",
+    "style": "gaming clean",
+    "prompt": "Créer un site Discord en style gaming clean, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 114,
+    "title": "Association #114",
+    "category": "Association",
+    "style": "ultra premium bleu/violet",
+    "prompt": "Créer un site Association en style ultra premium bleu/violet, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 115,
+    "title": "Blog #115",
+    "category": "Blog",
+    "style": "Apple minimaliste",
+    "prompt": "Créer un site Blog en style Apple minimaliste, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 116,
+    "title": "Artiste #116",
+    "category": "Artiste",
+    "style": "dark startup",
+    "prompt": "Créer un site Artiste en style dark startup, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 117,
+    "title": "Coach #117",
+    "category": "Coach",
+    "style": "nature moderne",
+    "prompt": "Créer un site Coach en style nature moderne, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 118,
+    "title": "Garage #118",
+    "category": "Garage",
+    "style": "luxe noir/or",
+    "prompt": "Créer un site Garage en style luxe noir/or, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 119,
+    "title": "Salon beauté #119",
+    "category": "Salon beauté",
+    "style": "gaming clean",
+    "prompt": "Créer un site Salon beauté en style gaming clean, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  },
+  {
+    "id": 120,
+    "title": "SaaS IA #120",
+    "category": "SaaS IA",
+    "style": "ultra premium bleu/violet",
+    "prompt": "Créer un site SaaS IA en style ultra premium bleu/violet, avec hero, stats, services, avis, FAQ, CTA, footer, animations, responsive mobile et SEO premium."
+  }
+]
