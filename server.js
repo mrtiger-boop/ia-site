@@ -182,7 +182,8 @@ async function callOpenRouter(messages) {
     body: JSON.stringify({
      model: "openrouter/auto",
      messages,
-     max_tokens: 2500
+     max_tokens: 6000
+     response_format: { type: "json_object" }
    })
 });
 
