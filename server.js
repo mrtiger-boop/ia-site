@@ -180,8 +180,8 @@ async function callOpenRouter(messages) {
       "X-Title": "Siteo"
     },
     body: JSON.stringify({
-      model: "qwen/qwen3-coder:free",
-      max_tokens: 3000,
+      model: "google/gemma-3-27b-it:free",
+      max_tokens: 2500,
       messages,
       max_tokens: 3500
     })
