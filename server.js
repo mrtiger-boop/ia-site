@@ -180,7 +180,8 @@ async function callOpenRouter(messages) {
       "X-Title": "Siteo"
     },
     body: JSON.stringify({
-      model: "deepseek/deepseek-chat-v3-0324:free",
+      model: "qwen/qwen3-coder:free",
+      max_tokens: 3000,
       messages,
       max_tokens: 3500
     })
