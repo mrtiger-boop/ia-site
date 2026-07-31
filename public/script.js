@@ -51,13 +51,14 @@ async function loadProfile(){
   state.profile=data;state.plan=data.plan||"free";state.credits=Number(data.credits??100);
 }
 
-async function updateCredits(n){
-  if(!state.user||state.plan==="pro")return;
-  const safe=Math.max(0,Number(n));
-  const {data,error}=await supabaseClient.from("profiles").update({credits:safe}).eq("id",state.user.id).select().single();
-  if(error)return notify("Erreur crédits.");
-  state.profile=data;state.credits=Number(data.credits??safe);
+// Les crédits ne sont plus jamais écrits depuis le navigateur (RLS l'interdit désormais) :
+// le serveur déduit les crédits lui-même et renvoie la nouvelle valeur après chaque génération.
+function applyCreditsFromServer(credits,plan){
+  if(typeof credits==="number")state.credits=credits;
+  if(plan)state.plan=plan;
 }
+async function getAccessToken(){const{data}=await supabaseClient.auth.getSession();return data?.session?.access_token||null}
+async function authFetch(url,options={}){const token=await getAccessToken();const headers={...(options.headers||{})};if(token)headers.Authorization=`Bearer ${token}`;return fetch(url,{...options,headers})}
 
 function updateUI(){
   const u=state.profile?.username||state.user?.user_metadata?.username||state.user?.email||"Invité";
@@ -102,10 +103,11 @@ async function generateSite(e){
   const mode=activeMode(),prompt=buildPrompt(),existingSite=$("existingSiteCode")?.value||"";
   if(els.resultText)els.resultText.textContent="Création en cours...";
   try{
-    const r=await fetch("/api/generate",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({prompt,mode,existingSite})});
+    const r=await authFetch("/api/generate",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({prompt,mode,existingSite})});
     const files=await r.json();
+    if(!r.ok){notify(files.error||"Erreur génération.");if(els.resultText)els.resultText.textContent="";return}
     state.generatedFiles={html:files.html||"",css:files.css||"",js:files.js||""};
-    if(state.plan!=="pro")await updateCredits(state.credits-10);
+    applyCreditsFromServer(files.credits,files.plan);
     const title=$("projectName")?.value||(mode==="improve"?"Site amélioré":"Site généré");
     state.history.unshift({id:Date.now(),title,date:new Date().toLocaleString("fr-FR"),files:state.generatedFiles});
     saveHistory();updatePreview(state.generatedFiles);
@@ -114,8 +116,8 @@ async function generateSite(e){
   }catch(err){console.error(err);notify("Erreur génération.")}
 }
 async function downloadZip(){if(!state.generatedFiles)return notify("Génère d'abord un site.");const zip=new JSZip();zip.file("index.html",state.generatedFiles.html||"");zip.file("style.css",state.generatedFiles.css||"");zip.file("script.js",state.generatedFiles.js||"");const blob=await zip.generateAsync({type:"blob"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="siteo-site.zip";a.click();URL.revokeObjectURL(a.href)}
-async function checkout(type){if(!state.user){openModal("loginModal");return notify("Connecte-toi avant d'acheter.")}try{const r=await fetch("/api/create-checkout-session",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({userId:state.user.id,email:state.user.email,type})});const d=await r.json();if(!d.url)return notify(d.error||"Erreur Stripe.");location.href=d.url}catch(e){notify("Erreur paiement.")}}
-async function portal(){if(!state.user){openModal("loginModal");return}try{const r=await fetch("/api/create-portal-session",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({userId:state.user.id})});const d=await r.json();if(!d.url)return notify(d.error||"Aucun abonnement à gérer.");location.href=d.url}catch(e){notify("Erreur portail.")}}
+async function checkout(type){if(!state.user){openModal("loginModal");return notify("Connecte-toi avant d'acheter.")}try{const r=await authFetch("/api/create-checkout-session",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({type})});const d=await r.json();if(!d.url)return notify(d.error||"Erreur Stripe.");location.href=d.url}catch(e){notify("Erreur paiement.")}}
+async function portal(){if(!state.user){openModal("loginModal");return}try{const r=await authFetch("/api/create-portal-session",{method:"POST",headers:{"Content-Type":"application/json"}});const d=await r.json();if(!d.url)return notify(d.error||"Aucun abonnement à gérer.");location.href=d.url}catch(e){notify("Erreur portail.")}}
 function esc(t){return String(t).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
 function renderHistory(){if(!els.historyList)return;if(!state.history.length){els.historyList.innerHTML='<div class="history-item">Aucune création.</div>';return}els.historyList.innerHTML=state.history.slice(0,8).map(i=>`<div class="history-item"><strong>${esc(i.title)}</strong><p>${esc(i.date)}</p></div>`).join("")}
 function renderProjects(){if(!els.projectsGrid)return;if(!state.history.length){els.projectsGrid.innerHTML='<div class="project-item">Aucun projet sauvegardé.</div>';return}els.projectsGrid.innerHTML=state.history.map(i=>`<div class="project-item"><h3>${esc(i.title)}</h3><p>${esc(i.date)}</p></div>`).join("")}
