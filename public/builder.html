@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aide - Siteo</title>
-  <meta name="description" content="Aide pour utiliser Siteo.">
+  <title>Constructeur - Siteo</title>
+  <meta name="description" content="Construis ton site à la main, bloc par bloc. Réservé aux membres Pro.">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://siteo.studio/help">
+  <link rel="canonical" href="https://siteo.studio/builder">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
   <link rel="apple-touch-icon" href="/favicon.png">
   <link rel="manifest" href="/manifest.json">
-  <meta property="og:title" content="Aide - Siteo">
-  <meta property="og:description" content="Aide pour utiliser Siteo.">
+  <meta property="og:title" content="Constructeur - Siteo">
+  <meta property="og:description" content="Construis ton site à la main, bloc par bloc. Réservé aux membres Pro.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://siteo.studio/help">
+  <meta property="og:url" content="https://siteo.studio/builder">
   <meta property="og:image" content="https://siteo.studio/favicon.png">
   <link rel="stylesheet" href="/style.css">
 </head>
@@ -52,9 +52,41 @@
     <button class="ui-btn ui-ghost small hidden" id="logoutBtn">Déconnexion</button>
   </div>
 </header>
-  <main><section class="page-hero reveal"><span class="pill">Aide</span><h1>Créer de meilleurs sites.</h1><p>Conseils rapides pour utiliser Siteo.</p></section><section class="academy-grid reveal"><article><h2>Prompt puissant</h2><pre>Créer un site premium pour...
-Style : bleu/violet.
-Sections : hero, services, stats, avis, FAQ, contact.</pre></article><article><h2>Améliorer</h2><p>Colle ton code dans l’onglet Améliorer et demande une transformation.</p></article><article><h2>Exporter</h2><p>Télécharge le ZIP puis héberge les fichiers.</p></article></section></main>
+  <main><section class="page-hero reveal">
+  <span class="pill">🧱 Constructeur • Pro</span>
+  <h1>Construis ton site à la main.</h1>
+  <p>Empile des blocs premium, édite chaque texte, réordonne, puis exporte — sans dépenser un seul crédit IA.</p>
+</section>
+
+<section id="builderLocked" class="hidden">
+  <div class="panel reveal" style="max-width:640px;margin:0 auto 80px;text-align:center;padding:44px">
+    <span class="pill">Réservé aux membres Pro</span>
+    <h2 style="font-family:var(--heading);font-weight:600;font-size:32px;margin:16px 0">Le Constructeur manuel est une fonctionnalité Pro.</h2>
+    <p style="color:var(--muted);margin-bottom:22px">Passe Pro pour construire tes sites bloc par bloc, en illimité, en plus des générations IA illimitées.</p>
+    <a class="ui-btn ui-primary huge" href="/shop">Découvrir Siteo Pro</a>
+  </div>
+</section>
+
+<section id="builderApp" class="studio-layout hidden" style="margin-bottom:80px">
+  <aside class="studio-card reveal">
+    <label>Couleur d'accent</label>
+    <input type="color" id="builderAccent" value="#2d6a4f" style="height:44px;padding:4px;cursor:pointer">
+    <label style="margin-top:18px">Ajouter un bloc</label>
+    <div class="template-grid" id="blockPalette"></div>
+    <label style="margin-top:18px">Blocs du site</label>
+    <div class="history-list" id="blockList"><div class="history-item">Aucun bloc. Ajoute-en un ci-dessus.</div></div>
+    <div id="blockEditor"></div>
+  </aside>
+  <section class="preview-card reveal">
+    <div class="preview-top"><div><strong>Aperçu du site</strong><small>Mise à jour en direct</small></div><div><button class="ui-btn ui-ghost small" id="builderCopyBtn">Copier</button><button class="ui-btn ui-ghost small" id="builderSaveBtn">Sauver</button></div></div>
+    <iframe id="sitePreview"></iframe>
+    <div class="action-row">
+      <button class="ui-btn ui-primary full" id="builderGenerateBtn" type="button">Générer le code</button>
+      <button class="ui-btn ui-ghost full" id="builderDownloadBtn" type="button">Télécharger ZIP</button>
+    </div>
+    <pre id="resultText">Le code apparaîtra ici.</pre>
+  </section>
+</section></main>
   <footer class="siteo-footer">
   <div>
     <div class="footer-brand"><span class="siteo-logo">S</span><strong>Siteo</strong></div>
@@ -110,5 +142,6 @@ Sections : hero, services, stats, avis, FAQ, contact.</pre></article><article><h
 <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="/script.js"></script>
+<script src="/builder.js"></script>
 </body>
 </html>

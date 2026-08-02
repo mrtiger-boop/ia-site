@@ -76,6 +76,7 @@ function updateUI(){
     else{els.openLoginBtn.classList.remove("hidden");els.openSignupBtn.classList.remove("hidden");els.logoutBtn.classList.add("hidden")}
   }
   renderHistory();renderProjects();renderCommunity();
+  if(window.onAuthUpdate)window.onAuthUpdate();
 }
 
 function activeMode(){return document.querySelector(".tab.active[data-generator-tab]")?.dataset.generatorTab||"create"}
