@@ -68,7 +68,7 @@ function compileSite(){
   const accentEl=document.getElementById("builderAccent");
   const accent=(accentEl&&accentEl.value)||"#2d6a4f";
   const bodyHtml=state.builderBlocks.map(b=>BLOCKS[b.type].render(b.content)).join("\n");
-  const html=`<!DOCTYPE html>\n<html lang="fr">\n<head>\n<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width, initial-scale=1.0">\n<title>Mon site</title>\n</head>\n<body>\n${bodyHtml}\n</body>\n</html>`;
+  const html=`<!DOCTYPE html>\n<html lang="fr">\n<head>\n<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width, initial-scale=1.0">\n<title>Mon site</title>\n<link rel="stylesheet" href="style.css">\n</head>\n<body>\n${bodyHtml}\n<script src="script.js"></script>\n</body>\n</html>`;
   const css=BASE_CSS.replace("ACCENT",accent);
   return {html,css,js:""};
 }
