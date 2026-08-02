@@ -42,21 +42,36 @@ function readAndResizeImage(file,maxW){
   });
 }
 
+function padVal(s){return {compact:"40px",normal:"72px",large:"110px"}[s.padding]||"72px"}
+function secAttr(s,bgFallback,colorFallback){
+  const parts=[`padding:${padVal(s)} 0`];
+  const bg=s.bg||bgFallback;if(bg)parts.push(`background:${bg}`);
+  const col=s.color||colorFallback;if(col)parts.push(`color:${col}`);
+  return ` style="${parts.join(";")}"`;
+}
+function wrapAttr(s,fallbackAlign){return ` style="text-align:${s.align||fallbackAlign||"left"}"`}
+function fontSizeAttr(s,tag){
+  if(!s.titleSize||s.titleSize==="normal")return "";
+  const map={h1:{small:"32px",large:"78px"},h2:{small:"22px",large:"46px"}};
+  const v=map[tag]&&map[tag][s.titleSize];
+  return v?` style="font-size:${v}"`:"";
+}
+function gridAttr(s,fallback){return ` style="display:grid;grid-template-columns:repeat(${s.columns||fallback},1fr);gap:24px;text-align:left"`}
+function subMargin(align){return align==="center"?"0 auto 30px":align==="right"?"0 0 30px auto":"0 0 30px 0"}
+
 const BASE_CSS=`:root{--accent:ACCENT}
 *{box-sizing:border-box}
 body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:#1c1c1c;line-height:1.65}
 .sb-wrap{max-width:1080px;margin:0 auto;padding:0 24px}
 .sb-section{padding:72px 0}
-.sb-center{text-align:center}
 .sb-narrow{max-width:760px}
 .sb-h1{font-size:clamp(32px,5vw,54px);margin:0 0 18px;font-weight:800;letter-spacing:-1px}
 .sb-h2{font-size:clamp(26px,3.4vw,38px);margin:0 0 32px;font-weight:800}
-.sb-sub{font-size:19px;color:#555;max-width:640px;margin:0 auto 30px;white-space:pre-line}
+.sb-sub{font-size:19px;color:#555;max-width:640px;white-space:pre-line}
 .sb-btn{display:inline-block;background:var(--accent);color:#fff;padding:15px 28px;border-radius:10px;text-decoration:none;font-weight:700;border:0;cursor:pointer;font-size:16px}
 .sb-btn-light{background:#fff;color:#111}
-.sb-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.sb-grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
 .sb-card{background:#f5f5f3;border-radius:16px;padding:28px}
+.sb-center{text-align:center}
 .sb-card-featured{border:2px solid var(--accent);position:relative}
 .sb-price{font-size:32px;font-weight:800;color:var(--accent);margin:8px 0}
 .sb-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:24px;text-align:center}
@@ -65,15 +80,13 @@ body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Ari
 .sb-faq{border-top:1px solid #e6e6e2;padding:20px 0}
 .sb-faq h3{margin:0 0 8px;font-size:18px}
 .sb-faq p{margin:0;color:#555}
-.sb-cta{background:var(--accent)}
 .sb-footer{padding:32px 0;color:#777;font-size:14px;border-top:1px solid #e6e6e2}
 .sb-footer-links{display:flex;gap:18px;justify-content:center;margin-bottom:14px;flex-wrap:wrap}
-.sb-footer-links a{color:#555;text-decoration:none}
+.sb-footer-links a{color:inherit;text-decoration:none}
 .sb-hero-img{max-width:100%;border-radius:16px;margin-top:36px;box-shadow:0 20px 50px rgba(0,0,0,.12)}
 .sb-imgtext{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
 .sb-imgtext-photo{width:100%;border-radius:16px;display:block}
 .sb-imgtext-placeholder{width:100%;aspect-ratio:4/3;background:#eee;border-radius:16px}
-.sb-gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 .sb-gallery-img{width:100%;height:220px;object-fit:cover;border-radius:14px;display:block}
 .sb-gallery-placeholder{width:100%;height:220px;background:#eee;border-radius:14px}
 .sb-team-photo{width:96px;height:96px;border-radius:50%;object-fit:cover;margin:0 auto;display:block}
@@ -81,70 +94,80 @@ body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Ari
 .sb-video{position:relative;padding-top:56.25%;border-radius:16px;overflow:hidden;background:#111}
 .sb-video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .sb-contact p{margin:6px 0;font-size:17px}
-@media(max-width:760px){.sb-grid-3,.sb-grid-2,.sb-imgtext{grid-template-columns:1fr}.sb-gallery{grid-template-columns:repeat(2,1fr)}}`;
+@media(max-width:760px){.sb-imgtext{grid-template-columns:1fr}}`;
 
 const BLOCKS={
-  hero:{label:"Hero",icon:"🚀",
+  hero:{label:"Hero",icon:"🚀",defaultAlign:"center",
     fields:[{key:"title",type:"text",label:"Titre"},{key:"subtitle",type:"textarea",label:"Sous-titre"},{key:"button",type:"text",label:"Texte du bouton"},{key:"image",type:"image",label:"Image (optionnel)"}],
     defaults:{title:"Le titre qui capte l'attention.",subtitle:"Une phrase claire qui explique ce que tu proposes et pourquoi c'est fait pour eux.",button:"Commencer",image:""},
-    render(c){return `<section class="sb-section sb-hero"><div class="sb-wrap sb-center"><h1 class="sb-h1">${esc(c.title)}</h1><p class="sb-sub">${esc(c.subtitle)}</p><a class="sb-btn" href="#">${esc(c.button)}</a>${c.image?`<img src="${c.image}" class="sb-hero-img">`:""}</div></section>`}},
-  imagetext:{label:"Image + texte",icon:"🖼️",
+    render(c,s){const align=s.align||"center";return `<section class="sb-section sb-hero"${secAttr(s)}><div class="sb-wrap" style="text-align:${align}"><h1 class="sb-h1"${fontSizeAttr(s,"h1")}>${esc(c.title)}</h1><p class="sb-sub" style="margin:${subMargin(align)}">${esc(c.subtitle)}</p><a class="sb-btn" href="#">${esc(c.button)}</a>${c.image?`<img src="${c.image}" class="sb-hero-img">`:""}</div></section>`}},
+  imagetext:{label:"Image + texte",icon:"🖼️",defaultAlign:"left",
     fields:[{key:"image",type:"image",label:"Image"},{key:"title",type:"text",label:"Titre"},{key:"text",type:"textarea",label:"Texte"},{key:"button",type:"text",label:"Texte du bouton (optionnel)"},{key:"layout",type:"select",label:"Position de l'image",options:[{value:"left",label:"Image à gauche"},{value:"right",label:"Image à droite"}]}],
     defaults:{image:"",title:"Une histoire à raconter",text:"Explique ici qui tu es, ce que tu fais et pourquoi ça compte pour tes visiteurs.",button:"En savoir plus",layout:"left"},
-    render(c){const reverse=c.layout==="right";const img=c.image?`<img src="${c.image}" class="sb-imgtext-photo">`:`<div class="sb-imgtext-placeholder"></div>`;const txt=`<div><h2 class="sb-h2">${esc(c.title)}</h2><p class="sb-sub" style="margin:0 0 20px;text-align:left">${esc(c.text)}</p>${c.button?`<a class="sb-btn" href="#">${esc(c.button)}</a>`:""}</div>`;return `<section class="sb-section"><div class="sb-wrap sb-imgtext">${reverse?txt+img:img+txt}</div></section>`}},
-  stats:{label:"Chiffres clés",icon:"📊",
+    render(c,s){const reverse=c.layout==="right";const align=s.align||"left";const img=c.image?`<img src="${c.image}" class="sb-imgtext-photo">`:`<div class="sb-imgtext-placeholder"></div>`;const txt=`<div style="text-align:${align}"><h2 class="sb-h2"${fontSizeAttr(s,"h2")}>${esc(c.title)}</h2><p class="sb-sub" style="margin:${subMargin(align)}">${esc(c.text)}</p>${c.button?`<a class="sb-btn" href="#">${esc(c.button)}</a>`:""}</div>`;return `<section class="sb-section"${secAttr(s)}><div class="sb-wrap sb-imgtext">${reverse?txt+img:img+txt}</div></section>`}},
+  stats:{label:"Chiffres clés",icon:"📊",noAlign:true,
     fields:[{key:"items",type:"items",label:"Un chiffre par ligne",hint:"Format : Chiffre|Libellé"}],
     defaults:{items:"500+|Clients satisfaits\n4.9/5|Note moyenne\n24/7|Support disponible"},
-    render(c){const items=bParseItems(c.items);return `<section class="sb-section"><div class="sb-wrap sb-stats">${items.map(([n,l])=>`<div class="sb-stat"><strong>${esc(n||"")}</strong><span>${esc(l||"")}</span></div>`).join("")}</div></section>`}},
-  features:{label:"Fonctionnalités",icon:"🧩",
+    render(c,s){const items=bParseItems(c.items);return `<section class="sb-section"${secAttr(s)}><div class="sb-wrap sb-stats">${items.map(([n,l])=>`<div class="sb-stat"><strong>${esc(n||"")}</strong><span>${esc(l||"")}</span></div>`).join("")}</div></section>`}},
+  features:{label:"Fonctionnalités",icon:"🧩",defaultAlign:"left",supportsColumns:true,defaultColumns:3,
     fields:[{key:"title",type:"text",label:"Titre de section"},{key:"items",type:"items",label:"Un bloc par ligne",hint:"Format : Titre|Description"}],
     defaults:{title:"Ce qui nous différencie",items:"Rapide|Mis en place en quelques minutes.\nFiable|Une qualité pensée pour durer.\nSimple|Aucune compétence technique requise."},
-    render(c){const items=bParseItems(c.items);return `<section class="sb-section"><div class="sb-wrap"><h2 class="sb-h2">${esc(c.title)}</h2><div class="sb-grid-3">${items.map(([t,d])=>`<div class="sb-card"><h3>${esc(t||"")}</h3><p>${esc(d||"")}</p></div>`).join("")}</div></div></section>`}},
-  gallery:{label:"Galerie",icon:"🌄",
+    render(c,s){const items=bParseItems(c.items);return `<section class="sb-section"${secAttr(s)}><div class="sb-wrap"${wrapAttr(s)}><h2 class="sb-h2"${fontSizeAttr(s,"h2")}>${esc(c.title)}</h2><div${gridAttr(s,3)}>${items.map(([t,d])=>`<div class="sb-card"><h3>${esc(t||"")}</h3><p>${esc(d||"")}</p></div>`).join("")}</div></div></section>`}},
+  gallery:{label:"Galerie",icon:"🌄",noAlign:true,supportsColumns:true,defaultColumns:4,
     fields:[{key:"image1",type:"image",label:"Image 1"},{key:"image2",type:"image",label:"Image 2"},{key:"image3",type:"image",label:"Image 3"},{key:"image4",type:"image",label:"Image 4"}],
     defaults:{image1:"",image2:"",image3:"",image4:""},
-    render(c){const imgs=[c.image1,c.image2,c.image3,c.image4];return `<section class="sb-section"><div class="sb-wrap sb-gallery">${imgs.map(src=>src?`<img src="${src}" class="sb-gallery-img">`:`<div class="sb-gallery-placeholder"></div>`).join("")}</div></section>`}},
-  team:{label:"Équipe",icon:"👥",
+    render(c,s){const imgs=[c.image1,c.image2,c.image3,c.image4];return `<section class="sb-section"${secAttr(s)}><div class="sb-wrap"><div${gridAttr(s,4)}>${imgs.map(src=>src?`<img src="${src}" class="sb-gallery-img">`:`<div class="sb-gallery-placeholder"></div>`).join("")}</div></div></section>`}},
+  team:{label:"Équipe",icon:"👥",defaultAlign:"center",supportsColumns:true,defaultColumns:3,
     fields:[{key:"title",type:"text",label:"Titre de section"},
       {type:"heading",text:"Membre 1"},{key:"image1",type:"image",label:"Photo"},{key:"name1",type:"text",label:"Nom"},{key:"role1",type:"text",label:"Rôle"},
       {type:"heading",text:"Membre 2"},{key:"image2",type:"image",label:"Photo"},{key:"name2",type:"text",label:"Nom"},{key:"role2",type:"text",label:"Rôle"},
       {type:"heading",text:"Membre 3"},{key:"image3",type:"image",label:"Photo"},{key:"name3",type:"text",label:"Nom"},{key:"role3",type:"text",label:"Rôle"}],
     defaults:{title:"L'équipe",image1:"",name1:"Prénom Nom",role1:"Fonction",image2:"",name2:"Prénom Nom",role2:"Fonction",image3:"",name3:"Prénom Nom",role3:"Fonction"},
-    render(c){const members=[[c.image1,c.name1,c.role1],[c.image2,c.name2,c.role2],[c.image3,c.name3,c.role3]];return `<section class="sb-section"><div class="sb-wrap"><h2 class="sb-h2 sb-center">${esc(c.title)}</h2><div class="sb-grid-3">${members.map(([img,n,r])=>`<div class="sb-card sb-center">${img?`<img src="${img}" class="sb-team-photo">`:`<div class="sb-team-placeholder"></div>`}<h3 style="margin:14px 0 2px">${esc(n||"")}</h3><p style="color:#777;margin:0">${esc(r||"")}</p></div>`).join("")}</div></div></section>`}},
-  pricing:{label:"Tarifs",icon:"💳",
+    render(c,s){const members=[[c.image1,c.name1,c.role1],[c.image2,c.name2,c.role2],[c.image3,c.name3,c.role3]];return `<section class="sb-section"${secAttr(s)}><div class="sb-wrap"${wrapAttr(s,"center")}><h2 class="sb-h2"${fontSizeAttr(s,"h2")}>${esc(c.title)}</h2><div${gridAttr(s,3)}>${members.map(([img,n,r])=>`<div class="sb-card sb-center">${img?`<img src="${img}" class="sb-team-photo">`:`<div class="sb-team-placeholder"></div>`}<h3 style="margin:14px 0 2px">${esc(n||"")}</h3><p style="color:#777;margin:0">${esc(r||"")}</p></div>`).join("")}</div></div></section>`}},
+  pricing:{label:"Tarifs",icon:"💳",defaultAlign:"center",supportsColumns:true,defaultColumns:3,
     fields:[{key:"items",type:"items",label:"Une offre par ligne",hint:"Format : Nom|Prix|Description|vedette (oui/non)"}],
     defaults:{items:"Starter|0€|Pour découvrir.|non\nPro|19€/mois|Pour aller plus loin.|oui\nBusiness|49€/mois|Pour les équipes.|non"},
-    render(c){const items=bParseItems(c.items);return `<section class="sb-section"><div class="sb-wrap sb-grid-3">${items.map(([n,p,d,f])=>`<div class="sb-card sb-center${(f||"").toLowerCase()==="oui"?" sb-card-featured":""}"><h3>${esc(n||"")}</h3><p class="sb-price">${esc(p||"")}</p><p>${esc(d||"")}</p><a class="sb-btn" href="#">Choisir</a></div>`).join("")}</div></section>`}},
-  testimonials:{label:"Témoignages",icon:"⭐",
+    render(c,s){const items=bParseItems(c.items);return `<section class="sb-section"${secAttr(s)}><div class="sb-wrap"${wrapAttr(s,"center")}><div${gridAttr(s,3)}>${items.map(([n,p,d,f])=>`<div class="sb-card sb-center${(f||"").toLowerCase()==="oui"?" sb-card-featured":""}"><h3>${esc(n||"")}</h3><p class="sb-price">${esc(p||"")}</p><p>${esc(d||"")}</p><a class="sb-btn" href="#">Choisir</a></div>`).join("")}</div></div></section>`}},
+  testimonials:{label:"Témoignages",icon:"⭐",defaultAlign:"left",supportsColumns:true,defaultColumns:2,
     fields:[{key:"items",type:"items",label:"Un avis par ligne",hint:"Format : Nom|Avis"}],
     defaults:{items:"Julie M.|Un service au top, je recommande !\nThomas R.|Rapide et professionnel du début à la fin."},
-    render(c){const items=bParseItems(c.items);return `<section class="sb-section"><div class="sb-wrap sb-grid-2">${items.map(([n,a])=>`<div class="sb-card"><p>"${esc(a||"")}"</p><strong>${esc(n||"")}</strong></div>`).join("")}</div></section>`}},
-  faq:{label:"FAQ",icon:"❓",
+    render(c,s){const items=bParseItems(c.items);return `<section class="sb-section"${secAttr(s)}><div class="sb-wrap"${wrapAttr(s)}><div${gridAttr(s,2)}>${items.map(([n,a])=>`<div class="sb-card"><p>"${esc(a||"")}"</p><strong>${esc(n||"")}</strong></div>`).join("")}</div></div></section>`}},
+  faq:{label:"FAQ",icon:"❓",defaultAlign:"left",
     fields:[{key:"title",type:"text",label:"Titre de section"},{key:"items",type:"items",label:"Une question par ligne",hint:"Format : Question|Réponse"}],
     defaults:{title:"Questions fréquentes",items:"Comment ça marche ?|Tu t'inscris et tu commences en quelques minutes.\nPuis-je annuler ?|Oui, à tout moment, sans engagement."},
-    render(c){const items=bParseItems(c.items);return `<section class="sb-section"><div class="sb-wrap sb-narrow"><h2 class="sb-h2">${esc(c.title)}</h2>${items.map(([q,a])=>`<div class="sb-faq"><h3>${esc(q||"")}</h3><p>${esc(a||"")}</p></div>`).join("")}</div></section>`}},
-  video:{label:"Vidéo",icon:"🎬",
+    render(c,s){const items=bParseItems(c.items);return `<section class="sb-section"${secAttr(s)}><div class="sb-wrap sb-narrow"${wrapAttr(s)}><h2 class="sb-h2"${fontSizeAttr(s,"h2")}>${esc(c.title)}</h2>${items.map(([q,a])=>`<div class="sb-faq"><h3>${esc(q||"")}</h3><p>${esc(a||"")}</p></div>`).join("")}</div></section>`}},
+  video:{label:"Vidéo",icon:"🎬",defaultAlign:"center",
     fields:[{key:"title",type:"text",label:"Titre (optionnel)"},{key:"url",type:"text",label:"URL YouTube ou Vimeo"}],
     defaults:{title:"",url:""},
-    render(c){const src=toEmbedUrl(c.url);return `<section class="sb-section"><div class="sb-wrap sb-narrow sb-center">${c.title?`<h2 class="sb-h2">${esc(c.title)}</h2>`:""}<div class="sb-video">${src?`<iframe src="${esc(src)}" allowfullscreen loading="lazy"></iframe>`:""}</div></div></section>`}},
-  contact:{label:"Contact",icon:"📇",
+    render(c,s){const src=toEmbedUrl(c.url);return `<section class="sb-section"${secAttr(s)}><div class="sb-wrap sb-narrow"${wrapAttr(s,"center")}>${c.title?`<h2 class="sb-h2"${fontSizeAttr(s,"h2")}>${esc(c.title)}</h2>`:""}<div class="sb-video">${src?`<iframe src="${esc(src)}" allowfullscreen loading="lazy"></iframe>`:""}</div></div></section>`}},
+  contact:{label:"Contact",icon:"📇",defaultAlign:"center",
     fields:[{key:"title",type:"text",label:"Titre"},{key:"address",type:"text",label:"Adresse"},{key:"phone",type:"text",label:"Téléphone"},{key:"email",type:"text",label:"Email"}],
     defaults:{title:"Contact",address:"12 rue Exemple, 75000 Paris",phone:"01 23 45 67 89",email:"contact@monsite.com"},
-    render(c){return `<section class="sb-section"><div class="sb-wrap sb-narrow sb-center"><h2 class="sb-h2">${esc(c.title)}</h2><div class="sb-contact">${c.address?`<p>📍 ${esc(c.address)}</p>`:""}${c.phone?`<p>📞 ${esc(c.phone)}</p>`:""}${c.email?`<p>✉️ ${esc(c.email)}</p>`:""}</div></div></section>`}},
-  cta:{label:"Appel à l'action",icon:"📣",
+    render(c,s){return `<section class="sb-section"${secAttr(s)}><div class="sb-wrap sb-narrow"${wrapAttr(s,"center")}><h2 class="sb-h2"${fontSizeAttr(s,"h2")}>${esc(c.title)}</h2><div class="sb-contact">${c.address?`<p>📍 ${esc(c.address)}</p>`:""}${c.phone?`<p>📞 ${esc(c.phone)}</p>`:""}${c.email?`<p>✉️ ${esc(c.email)}</p>`:""}</div></div></section>`}},
+  cta:{label:"Appel à l'action",icon:"📣",defaultAlign:"center",
     fields:[{key:"title",type:"text",label:"Titre"},{key:"subtitle",type:"textarea",label:"Sous-titre (optionnel)"},{key:"button",type:"text",label:"Texte du bouton"}],
     defaults:{title:"Prêt à te lancer ?",subtitle:"",button:"Commencer maintenant"},
-    render(c){return `<section class="sb-section sb-cta"><div class="sb-wrap sb-center"><h2 class="sb-h2" style="color:#fff">${esc(c.title)}</h2>${c.subtitle?`<p class="sb-sub" style="color:rgba(255,255,255,.85)">${esc(c.subtitle)}</p>`:""}<a class="sb-btn sb-btn-light" href="#">${esc(c.button)}</a></div></section>`}},
-  footer:{label:"Footer",icon:"🔻",
+    render(c,s){const align=s.align||"center";const bg=s.bg||"var(--accent)";const color=s.color||"#fff";return `<section class="sb-section" style="padding:${padVal(s)} 0;background:${bg};color:${color}"><div class="sb-wrap" style="text-align:${align}"><h2 class="sb-h2"${fontSizeAttr(s,"h2")}>${esc(c.title)}</h2>${c.subtitle?`<p class="sb-sub" style="margin:${subMargin(align)};color:inherit;opacity:.85">${esc(c.subtitle)}</p>`:""}<a class="sb-btn sb-btn-light" href="#">${esc(c.button)}</a></div></section>`}},
+  footer:{label:"Footer",icon:"🔻",defaultAlign:"center",
     fields:[{key:"links",type:"items",label:"Liens (optionnel)",hint:"Format : Label|#url"},{key:"text",type:"text",label:"Texte du footer"}],
     defaults:{links:"",text:"© 2026 Mon site. Tous droits réservés."},
-    render(c){const links=bParseItems(c.links);return `<footer class="sb-footer"><div class="sb-wrap sb-center">${links.length?`<div class="sb-footer-links">${links.map(([l,u])=>`<a href="${esc(u||"#")}">${esc(l||"")}</a>`).join("")}</div>`:""}<div>${esc(c.text)}</div></div></footer>`}}
+    render(c,s){const links=bParseItems(c.links);return `<footer class="sb-footer"${secAttr(s)}><div class="sb-wrap"${wrapAttr(s,"center")}>${links.length?`<div class="sb-footer-links">${links.map(([l,u])=>`<a href="${esc(u||"#")}">${esc(l||"")}</a>`).join("")}</div>`:""}<div>${esc(c.text)}</div></div></footer>`}},
+  spacer:{label:"Espacement",icon:"↕️",noStyle:true,
+    fields:[{key:"height",type:"select",label:"Hauteur",options:[{value:"small",label:"Petit"},{value:"medium",label:"Moyen"},{value:"large",label:"Grand"}]}],
+    defaults:{height:"medium"},
+    render(c){const h={small:"24px",medium:"64px",large:"140px"}[c.height]||"64px";return `<div style="height:${h}"></div>`}},
+  custom:{label:"HTML personnalisé",icon:"🛠️",noStyle:true,
+    fields:[{key:"html",type:"textarea",label:"Code HTML",hint:"Pour utilisateurs avancés : colle ton propre code.",rows:10}],
+    defaults:{html:'<section style="padding:40px 24px;text-align:center">\n  <p>Ton code HTML ici.</p>\n</section>'},
+    render(c){return c.html||""}}
 };
+
+function defaultStyleFor(def){return {align:def.defaultAlign||"left",bg:"",color:"",padding:"normal",titleSize:"normal",columns:def.defaultColumns||3}}
 
 function compileSite(){
   const accentEl=document.getElementById("builderAccent");
   const accent=(accentEl&&accentEl.value)||"#2d6a4f";
-  const bodyHtml=state.builderBlocks.map(b=>BLOCKS[b.type].render(b.content)).join("\n");
+  const bodyHtml=state.builderBlocks.map(b=>BLOCKS[b.type].render(b.content,b.style||{})).join("\n");
   const html=`<!DOCTYPE html>\n<html lang="fr">\n<head>\n<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width, initial-scale=1.0">\n<title>Mon site</title>\n<link rel="stylesheet" href="style.css">\n</head>\n<body>\n${bodyHtml}\n<script src="script.js"></script>\n</body>\n</html>`;
   const css=BASE_CSS.replace("ACCENT",accent);
   return {html,css,js:""};
@@ -178,13 +201,30 @@ function renderBlockList(){
   host.querySelectorAll("[data-del]").forEach(el=>el.addEventListener("click",e=>{e.stopPropagation();removeBlock(el.dataset.del)}));
 }
 
+function styleFormHtml(b){
+  const def=BLOCKS[b.type];
+  const s=b.style||(b.style=defaultStyleFor(def));
+  let html=`<label style="margin-top:22px">Style du bloc</label>`;
+  if(!def.noAlign){
+    html+=`<label>Alignement</label><select data-style="align"><option value="left"${s.align==="left"?" selected":""}>Gauche</option><option value="center"${s.align==="center"?" selected":""}>Centre</option><option value="right"${s.align==="right"?" selected":""}>Droite</option></select>`;
+    html+=`<label>Taille du titre</label><select data-style="titleSize"><option value="small"${s.titleSize==="small"?" selected":""}>Petit</option><option value="normal"${(!s.titleSize||s.titleSize==="normal")?" selected":""}>Moyen</option><option value="large"${s.titleSize==="large"?" selected":""}>Grand</option></select>`;
+  }
+  html+=`<label>Espacement</label><select data-style="padding"><option value="compact"${s.padding==="compact"?" selected":""}>Compact</option><option value="normal"${(!s.padding||s.padding==="normal")?" selected":""}>Normal</option><option value="large"${s.padding==="large"?" selected":""}>Large</option></select>`;
+  if(def.supportsColumns){
+    html+=`<label>Colonnes</label><select data-style="columns"><option value="2"${s.columns==2?" selected":""}>2</option><option value="3"${s.columns==3?" selected":""}>3</option><option value="4"${s.columns==4?" selected":""}>4</option></select>`;
+  }
+  html+=`<label>Couleur de fond</label><div style="display:flex;gap:8px;align-items:center"><input type="color" data-style="bg" value="${s.bg||"#ffffff"}" style="height:40px;padding:4px;cursor:pointer;flex:1"><button type="button" class="ui-btn ui-ghost small" data-styleclear="bg">Aucune</button></div>`;
+  html+=`<label>Couleur du texte</label><div style="display:flex;gap:8px;align-items:center"><input type="color" data-style="color" value="${s.color||"#1c1c1c"}" style="height:40px;padding:4px;cursor:pointer;flex:1"><button type="button" class="ui-btn ui-ghost small" data-styleclear="color">Auto</button></div>`;
+  return html;
+}
+
 function renderEditorForm(){
   const host=document.getElementById("blockEditor");
   if(!host)return;
   const b=state.builderBlocks.find(x=>x.id===selectedBlockId);
   if(!b){host.innerHTML="";return}
   const def=BLOCKS[b.type];
-  host.innerHTML=`<label style="margin-top:18px">Modifier : ${def.icon} ${esc(def.label)}</label>`+def.fields.map(f=>{
+  let html=`<label style="margin-top:18px">Modifier : ${def.icon} ${esc(def.label)}</label>`+def.fields.map(f=>{
     if(f.type==="heading")return `<div style="margin-top:16px;font-weight:800;color:var(--text)">${esc(f.text)}</div>`;
     if(f.type==="image"){
       const val=b.content[f.key]||"";
@@ -196,10 +236,12 @@ function renderEditorForm(){
     }
     const val=esc(b.content[f.key]||"");
     if(f.type==="textarea"||f.type==="items"){
-      return `<label>${esc(f.label)}${f.hint?` <small style="color:var(--muted);font-weight:400">(${esc(f.hint)})</small>`:""}</label><textarea data-field="${f.key}" rows="${f.type==="items"?5:3}">${val}</textarea>`;
+      return `<label>${esc(f.label)}${f.hint?` <small style="color:var(--muted);font-weight:400">(${esc(f.hint)})</small>`:""}</label><textarea data-field="${f.key}" rows="${f.rows||(f.type==="items"?5:3)}">${val}</textarea>`;
     }
     return `<label>${esc(f.label)}</label><input data-field="${f.key}" value="${val}">`;
   }).join("");
+  if(!def.noStyle)html+=styleFormHtml(b);
+  host.innerHTML=html;
   host.querySelectorAll("[data-field]").forEach(el=>{
     const handler=()=>{b.content[el.dataset.field]=el.value;recompileAndPreview()};
     el.addEventListener("input",handler);
@@ -220,11 +262,24 @@ function renderEditorForm(){
     renderEditorForm();
     recompileAndPreview();
   }));
+  host.querySelectorAll("[data-style]").forEach(el=>{
+    const handler=()=>{
+      const key=el.dataset.style;
+      b.style[key]=key==="columns"?parseInt(el.value,10):el.value;
+      recompileAndPreview();
+    };
+    el.addEventListener(el.tagName==="SELECT"?"change":"input",handler);
+  });
+  host.querySelectorAll("[data-styleclear]").forEach(el=>el.addEventListener("click",()=>{
+    b.style[el.dataset.styleclear]="";
+    renderEditorForm();
+    recompileAndPreview();
+  }));
 }
 
 function addBlock(type){
   const def=BLOCKS[type];if(!def)return;
-  const block={id:newBlockId(),type,content:{...def.defaults}};
+  const block={id:newBlockId(),type,content:{...def.defaults},style:defaultStyleFor(def)};
   state.builderBlocks.push(block);
   selectedBlockId=block.id;
   renderBlockList();renderEditorForm();recompileAndPreview();
@@ -238,7 +293,8 @@ function moveBlock(id,dir){
 }
 function duplicateBlock(id){
   const i=state.builderBlocks.findIndex(b=>b.id===id);if(i<0)return;
-  const clone={id:newBlockId(),type:state.builderBlocks[i].type,content:{...state.builderBlocks[i].content}};
+  const src=state.builderBlocks[i];
+  const clone={id:newBlockId(),type:src.type,content:{...src.content},style:{...src.style}};
   state.builderBlocks.splice(i+1,0,clone);
   renderBlockList();recompileAndPreview();
 }
@@ -256,6 +312,12 @@ function initBuilderApp(){
     palette.querySelectorAll("[data-add]").forEach(btn=>btn.addEventListener("click",()=>addBlock(btn.dataset.add)));
   }
   document.getElementById("builderAccent")?.addEventListener("input",recompileAndPreview);
+  document.getElementById("builderResetBtn")?.addEventListener("click",()=>{
+    if(state.builderBlocks.length&&!confirm("Effacer tous les blocs et repartir de zéro ?"))return;
+    state.builderBlocks=[];selectedBlockId=null;
+    renderBlockList();renderEditorForm();recompileAndPreview();
+    notify("Nouveau site vierge.");
+  });
   document.getElementById("builderGenerateBtn")?.addEventListener("click",()=>{
     const compiled=compileSite();state.generatedFiles=compiled;
     const resultEl=document.getElementById("resultText");
