@@ -2,19 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/sitemap/0.9">
   <url><loc>https://siteo.studio/</loc><priority>1.0</priority></url>
   <url><loc>https://siteo.studio/generate</loc></url>
-  <url><loc>https://siteo.studio/projects</loc></url>
+  <url><loc>https://siteo.studio/builder</loc></url>
   <url><loc>https://siteo.studio/templates</loc></url>
-  <url><loc>https://siteo.studio/components</loc></url>
-  <url><loc>https://siteo.studio/marketplace</loc></url>
-  <url><loc>https://siteo.studio/academy</loc></url>
-  <url><loc>https://siteo.studio/leaderboard</loc></url>
-  <url><loc>https://siteo.studio/roadmap</loc></url>
-  <url><loc>https://siteo.studio/showcase</loc></url>
-  <url><loc>https://siteo.studio/analytics</loc></url>
-  <url><loc>https://siteo.studio/settings</loc></url>
-  <url><loc>https://siteo.studio/dashboard</loc></url>
-  <url><loc>https://siteo.studio/shop</loc></url>
+  <url><loc>https://siteo.studio/projects</loc></url>
   <url><loc>https://siteo.studio/community</loc></url>
+  <url><loc>https://siteo.studio/shop</loc></url>
+  <url><loc>https://siteo.studio/roadmap</loc></url>
   <url><loc>https://siteo.studio/help</loc></url>
+  <url><loc>https://siteo.studio/dashboard</loc></url>
   <url><loc>https://siteo.studio/privacy</loc></url>
 </urlset>

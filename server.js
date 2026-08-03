@@ -309,8 +309,7 @@ app.get("/google85eef80a332bd1ef.html", (req, res) => {
 
 const pages = [
   "generate", "dashboard", "shop", "community", "projects", "templates",
-  "components", "academy", "leaderboard", "roadmap", "marketplace",
-  "showcase", "analytics", "settings", "help", "privacy", "builder"
+  "roadmap", "help", "privacy", "builder"
 ];
 
 app.get("/", (req, res) => {

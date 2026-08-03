@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Confidentialité - Siteo</title>
-  <meta name="description" content="Données et paiements.">
+  <meta name="description" content="Ce que Siteo fait de tes données : comptes, paiements et historique local.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://siteo.studio/privacy">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
   <link rel="apple-touch-icon" href="/favicon.png">
   <link rel="manifest" href="/manifest.json">
   <meta property="og:title" content="Confidentialité - Siteo">
-  <meta property="og:description" content="Données et paiements.">
+  <meta property="og:description" content="Ce que Siteo fait de tes données : comptes, paiements et historique local.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://siteo.studio/privacy">
   <meta property="og:image" content="https://siteo.studio/favicon.png">
@@ -37,13 +37,11 @@
     <a href="/">Accueil</a>
     <a href="/generate">Studio</a>
     <a href="/templates">Templates</a>
-    <a href="/components">Composants</a>
-    <a href="/marketplace">Marketplace</a>
-    <a href="/academy">Academy</a>
-    <a href="/leaderboard">Top</a>
+    <a href="/builder">Constructeur</a>
     <a href="/community">Galerie</a>
     <a href="/shop">Boutique</a>
-    <a href="/builder">Constructeur</a>
+    <a href="/roadmap">Roadmap</a>
+    <a href="/help">Aide</a>
     <a href="/dashboard">Profil</a>
   </nav>
   <div class="siteo-auth">
@@ -52,7 +50,24 @@
     <button class="ui-btn ui-ghost small hidden" id="logoutBtn">Déconnexion</button>
   </div>
 </header>
-  <main><section class="page-hero reveal"><span class="pill">Confidentialité</span><h1>Données et paiements.</h1><p>Supabase pour les comptes, Stripe pour les paiements.</p></section><section class="panel reveal"><h2>Comptes</h2><p>Les profils, crédits et plans sont gérés avec Supabase.</p><h2>Paiements</h2><p>Stripe traite les paiements. Siteo ne stocke pas les cartes bancaires.</p><h2>Galerie</h2><p>Les sites publiés dans la galerie peuvent être visibles publiquement.</p></section></main>
+  <main><section class="page-hero reveal"><span class="pill">Confidentialité</span><h1>Ce qu'on fait de tes données, simplement.</h1><p>Pas de jargon juridique inutile : voici exactement ce qui est collecté, où c'est stocké, et comment nous contacter.</p></section><section class="panel reveal">
+  <h2>Ton compte</h2>
+  <p>La création de compte passe par Supabase Auth : email, mot de passe (jamais vu ni stocké directement par Siteo, géré par Supabase) et un pseudo optionnel.</p>
+  <h2>Ton profil</h2>
+  <p>Une fois connecté, ton profil (plan, crédits, identifiants Stripe liés à ton abonnement) est stocké dans la base Supabase de Siteo, protégée par des règles d'accès qui empêchent un utilisateur de lire ou modifier les données d'un autre.</p>
+  <h2>Paiements</h2>
+  <p>Les paiements passent entièrement par Stripe Checkout. Aucune donnée de carte bancaire ne transite ou n'est stockée par les serveurs de Siteo — seuls des identifiants d'abonnement nous sont transmis par Stripe.</p>
+  <h2>Historique de génération</h2>
+  <p>Tes sites générés sont sauvegardés uniquement dans le stockage local de ton navigateur (localStorage), jamais envoyés à un serveur. Ça veut dire que ton historique reste sur cet appareil et sera perdu si tu vides les données de ton navigateur ou changes d'appareil.</p>
+  <h2>Galerie</h2>
+  <p>La galerie fonctionne aujourd'hui de la même façon : ce que tu y ajoutes reste local à ton navigateur, ce n'est pas encore synchronisé ni visible par les autres visiteurs. Une vraie galerie partagée fait partie de la roadmap.</p>
+  <h2>Stockage local utilisé</h2>
+  <p>En plus de la session Supabase Auth, Siteo utilise trois clés de stockage local sur ton navigateur : ton historique de générations, ta galerie personnelle, et ta préférence pour l'effet de feuilles animées. Aucun cookie publicitaire ou traceur tiers n'est utilisé.</p>
+  <h2>Tes droits</h2>
+  <p>Tu peux effacer ton historique et ta galerie à tout moment depuis l'app (bouton "Vider") ou en vidant le stockage local de ton navigateur. Pour toute question sur tes données ou pour demander la suppression de ton compte, écris-nous directement.</p>
+  <h2>Contact</h2>
+  <p><a href="mailto:alanfinet58@outlook.fr">alanfinet58@outlook.fr</a></p>
+</section></main>
   <footer class="siteo-footer">
   <div>
     <div class="footer-brand"><span class="siteo-logo">S</span><strong>Siteo</strong></div>
@@ -61,8 +76,8 @@
   <div class="footer-links">
     <a href="/generate">Studio</a>
     <a href="/templates">Templates</a>
-    <a href="/components">Composants</a>
-    <a href="/marketplace">Marketplace</a>
+    <a href="/help">Aide</a>
+    <a href="/roadmap">Roadmap</a>
     <a href="/privacy">Confidentialité</a>
   </div>
 </footer>
